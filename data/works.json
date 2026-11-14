@@ -13,19 +13,6 @@
       "featured": true
     },
     {
-      "id": "serpente-piumato",
-      "title": "Serpente piumato",
-      "year": "",
-      "tecnica": "schizzo",
-      "temi": [
-        "fantasy",
-        "animali"
-      ],
-      "description": "Penna a sfera con tocco di rosso sulla piuma.",
-      "image": "images/serpente-piumato.jpg",
-      "featured": true
-    },
-    {
       "id": "shere-khan",
       "title": "Shere Khan",
       "year": "",
