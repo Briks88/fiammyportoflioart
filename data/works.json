@@ -1,7 +1,20 @@
 {
   "works": [
     {
-      "title": "\"Open your mind...\"",
+      "title": "Ippocampo",
+      "year": "2012",
+      "tecnica": "tecnica-mista",
+      "temi": [
+        "fantasy",
+        "animali"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/ippocampo-mwgv939g.jpg",
+      "id": "ippocampo"
+    },
+    {
+      "title": "Open your mind...",
       "year": "2011",
       "tecnica": "pantoni",
       "temi": [
