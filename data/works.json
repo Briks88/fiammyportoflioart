@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Chimera",
+      "year": "2015",
+      "tecnica": "pastello",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/chimera-mwgvuw1j.jpg",
+      "id": "chimera"
+    },
+    {
       "title": "Autunno",
       "year": "2026",
       "tecnica": "acquerello",
