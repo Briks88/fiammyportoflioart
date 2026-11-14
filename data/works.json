@@ -1,6 +1,66 @@
 {
   "works": [
     {
+      "title": "Bozza pesciolino",
+      "year": "2026",
+      "tecnica": "olio-su-tela",
+      "temi": [
+        "animali"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/bozza-pesciolino-mwgy64x1.jpg",
+      "id": "bozza-pesciolino"
+    },
+    {
+      "title": "Bozza leone",
+      "year": "2018",
+      "tecnica": "schizzo",
+      "temi": [
+        "animali"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/bozza-leone-mwgy5h2b.jpg",
+      "id": "bozza-leone"
+    },
+    {
+      "title": "Bozza drago marino",
+      "year": "2018",
+      "tecnica": "schizzo",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/bozza-drago-marino-mwgy4k3b.jpg",
+      "id": "bozza-drago-marino"
+    },
+    {
+      "title": "Bozza drago",
+      "year": "2018",
+      "tecnica": "schizzo",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/bozza-drago-mwgy1n7d.jpg",
+      "id": "bozza-drago"
+    },
+    {
+      "title": "Studio di mastino",
+      "year": "2026",
+      "tecnica": "schizzo",
+      "temi": [
+        "animali"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/studio-di-mastino-mwgxznqy.jpg",
+      "id": "studio-di-mastino"
+    },
+    {
       "title": "Drago verde",
       "year": "2019",
       "tecnica": "pantoni",
