@@ -8,7 +8,7 @@
         "ritratti"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/mezzo-volto-a-pastelli-mwgvm8ry.jpg",
       "id": "mezzo-volto-a-pastelli"
     },
@@ -20,7 +20,7 @@
         "fantasy"
       ],
       "description": "Preso ispirazione dal personaggio di Ignitus del videogame \"The legend of Spyro - A new beginning\" 2005",
-      "featured": true,
+      "featured": false,
       "image": "images/ignitus-mwgvfeja.jpg",
       "id": "ignitus"
     },
@@ -33,7 +33,7 @@
         "animali"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/pesce-combattente-rosso-mwgvcgvn.jpg",
       "id": "pesce-combattente-rosso"
     },
@@ -46,7 +46,7 @@
         "animali"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/ippocampo-mwgv939g.jpg",
       "id": "ippocampo"
     },
@@ -58,7 +58,7 @@
         "altro"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/open-your-mind-mwgv4ddc.jpg",
       "id": "open-your-mind"
     }
