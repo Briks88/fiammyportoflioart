@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Alakazam",
+      "year": "2016",
+      "tecnica": "pastello",
+      "temi": [
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga \"Pokèmon\"",
+      "featured": true,
+      "image": "images/alakazam-mwgx5j7b.jpg",
+      "id": "alakazam"
+    },
+    {
       "title": "Basilisco",
       "year": "2018",
       "tecnica": "pantoni",
@@ -33,7 +45,7 @@
       "temi": [
         "fanart"
       ],
-      "description": "Preso ispirazione dai personaggi di \"Pokémon\"",
+      "description": "Preso ispirazione dai personaggi della saga \"Pokémon\"",
       "featured": true,
       "image": "images/vaporeon-mwgwxywf.jpg",
       "id": "vaporeon"
