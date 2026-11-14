@@ -1,6 +1,58 @@
 {
   "works": [
     {
+      "title": "Ungaro spinato",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/ungaro-spinato-mwgwdb42.jpg",
+      "id": "ungaro-spinato"
+    },
+    {
+      "title": "Gallese verde",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/gallese-verde-mwgwclam.jpg",
+      "id": "gallese-verde"
+    },
+    {
+      "title": "Petardo cinese",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/petardo-cinese-mwgwbvxm.jpg",
+      "id": "petardo-cinese"
+    },
+    {
+      "title": "Grugnocorto Svedese",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/grugnocorto-svedese-mwgwaxjq.jpg",
+      "id": "grugnocorto-svedese"
+    },
+    {
       "title": "Dorsorugoso di Norvegia",
       "year": "2017",
       "tecnica": "pantoni",
