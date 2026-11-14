@@ -1,3 +1,16 @@
 {
-  "works": []
+  "works": [
+    {
+      "title": "\"Open your mind...\"",
+      "year": "2011",
+      "tecnica": "pantoni",
+      "temi": [
+        "altro"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/open-your-mind-mwgv4ddc.jpg",
+      "id": "open-your-mind"
+    }
+  ]
 }
