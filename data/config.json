@@ -20,6 +20,10 @@
     {
       "id": "ritratti",
       "label": "Ritratti"
+    },
+    {
+      "id": "altro",
+      "label": "Altro"
     }
   ],
   "tecniche": [
@@ -37,11 +41,15 @@
     },
     {
       "id": "pantoni",
-      "label": "Marker"
+      "label": "Pennarelli marker"
     },
     {
       "id": "schizzo",
-      "label": "Schizzo"
+      "label": "Schizzo a penna"
+    },
+    {
+      "id": "schizzo-a-matita",
+      "label": "Schizzo a matita"
     }
   ],
   "github": {
