@@ -21,7 +21,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/basilisco-mwgx0k6g.jpg",
       "id": "basilisco"
     },
@@ -34,7 +34,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/ippogrifo-mwgwz8gr.jpg",
       "id": "ippogrifo"
     },
@@ -46,7 +46,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga \"Pokémon\"",
-      "featured": true,
+      "featured": false,
       "image": "images/vaporeon-mwgwxywf.jpg",
       "id": "vaporeon"
     },
@@ -59,7 +59,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/opaleye-mwgwql1k.jpg",
       "id": "opaleye"
     },
@@ -72,7 +72,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/serpecorno-mwgwpvj0.jpg",
       "id": "serpecorno"
     },
@@ -85,7 +85,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/wampus-mwgwn2u2.jpg",
       "id": "wampus"
     },
@@ -98,7 +98,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/augurey-mwgwm8nk.jpg",
       "id": "augurey"
     },
@@ -111,7 +111,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/cornolungo-romeno-mwgwkn4d.jpg",
       "id": "cornolungo-romeno"
     },
@@ -123,7 +123,7 @@
         "fantasy"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/manticora-mwgwikyb.jpg",
       "id": "manticora"
     },
