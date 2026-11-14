@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Fenice",
+      "year": "2020",
+      "tecnica": "pastello",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/fenice-mwgw25bs.jpg",
+      "id": "fenice"
+    },
+    {
       "title": "Testa meccanica",
       "year": "2011",
       "tecnica": "schizzo-a-matita",
@@ -26,7 +38,7 @@
     },
     {
       "title": "Chimera",
-      "year": "2015",
+      "year": "2020",
       "tecnica": "pastello",
       "temi": [
         "fantasy"
