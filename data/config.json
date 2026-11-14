@@ -5,18 +5,49 @@
   "instagram": "https://www.instagram.com/",
   "email": "",
   "temi": [
-    { "id": "fantasy", "label": "Fantasy" },
-    { "id": "natura", "label": "Natura" },
-    { "id": "animali", "label": "Animali" },
-    { "id": "ritratti", "label": "Ritratti" }
+    {
+      "id": "fantasy",
+      "label": "Fantasy"
+    },
+    {
+      "id": "natura",
+      "label": "Natura"
+    },
+    {
+      "id": "animali",
+      "label": "Animali"
+    },
+    {
+      "id": "ritratti",
+      "label": "Ritratti"
+    }
   ],
   "tecniche": [
-    { "id": "olio-su-tela", "label": "Olio su tela" },
-    { "id": "acrilico", "label": "Acrilico" },
-    { "id": "acquerello", "label": "Acquerello" },
-    { "id": "pantoni", "label": "Pantoni" },
-    { "id": "schizzo", "label": "Schizzo" }
+    {
+      "id": "olio-su-tela",
+      "label": "Olio su tela"
+    },
+    {
+      "id": "acrilico",
+      "label": "Acrilico"
+    },
+    {
+      "id": "acquerello",
+      "label": "Acquerello"
+    },
+    {
+      "id": "pantoni",
+      "label": "Pantoni"
+    },
+    {
+      "id": "schizzo",
+      "label": "Schizzo"
+    }
   ],
-  "github": { "owner": "Briks88", "repo": "fiammyportoflioart", "branch": "main" },
-  "pinHash": ""
+  "github": {
+    "owner": "Briks88",
+    "repo": "fiammyportoflioart",
+    "branch": "main"
+  },
+  "pinHash": "af2aece91647e72ab3fb5fbb67ea4c8336ec63aac2f2f8232c9e1e0f65eaa4cd"
 }
