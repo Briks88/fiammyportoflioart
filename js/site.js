@@ -83,6 +83,7 @@
     let feat = works.filter((w) => w.featured);
     if (!feat.length) feat = works.slice(0, 8);
     const track = $("#track");
+    if (!feat.length) { document.querySelector(".carousel").hidden = true; return homeSections(); }
     track.innerHTML = feat.map((w, i) => `<button class="slide" data-i="${i}" aria-label="Apri ${esc(w.title)}"><img src="${esc(w.image)}" alt="${esc(w.title)}" ${i > 1 ? 'loading="lazy"' : ""}><span class="cap">${esc(w.title)}</span></button>`).join("");
     track.addEventListener("click", (e) => { const b = e.target.closest(".slide"); if (b) openLb(feat, +b.dataset.i); });
     const slides = [...track.children];
@@ -111,8 +112,12 @@
     mark(); start();
     window.addEventListener("load", () => setTimeout(() => goTo(0), 50));
 
+    homeSections();
+  }
+
+  function homeSections() {
     const count = (key, id) => works.filter((w) => (key === "temi" ? (w.temi || []).includes(id) : w.tecnica === id)).length;
-    const tiles = (list, key, param) => list.map((c) => `<a class="tile" href="opere.html?${param}=${encodeURIComponent(c.id)}"><span class="t-name">${esc(c.label)}</span><span class="t-count">${count(key, c.id)} opere</span></a>`).join("");
+    const tiles = (list, key, param) => list.map((c) => `<a class="tile" href="opere.html?${param}=${encodeURIComponent(c.id)}"><span class="t-name">${esc(c.label)}</span><span class="t-count">${count(key, c.id) === 1 ? "1 opera" : count(key, c.id) + " opere"}</span></a>`).join("");
     $("#tiles-temi").innerHTML = tiles(cfg.temi, "temi", "tema");
     $("#tiles-tecniche").innerHTML = tiles(cfg.tecniche, "tecnica", "tecnica");
 
@@ -135,7 +140,7 @@
       shown = works.filter((w) => (!state.tema || (w.temi || []).includes(state.tema)) && (!state.tecnica || w.tecnica === state.tecnica));
       document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", (state[c.dataset.k] || "") === c.dataset.v));
       $("#count").textContent = shown.length === 1 ? "1 opera" : shown.length + " opere";
-      $("#grid").innerHTML = shown.length ? shown.map((w, i) => `<button class="card" data-i="${i}" aria-label="Apri ${esc(w.title)}"><div class="img"><img src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy"></div><div class="meta"><b>${esc(w.title)}</b><span>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? " · " + esc(w.year) : ""}</span></div></button>`).join("") : `<p class="empty">Nessuna opera in questa combinazione di filtri.</p>`;
+      $("#grid").innerHTML = shown.length ? shown.map((w, i) => `<button class="card" data-i="${i}" aria-label="Apri ${esc(w.title)}"><div class="img"><img src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy"></div><div class="meta"><b>${esc(w.title)}</b><span>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? " · " + esc(w.year) : ""}</span></div></button>`).join("") : `<p class="empty">${works.length ? "Nessuna opera in questa combinazione di filtri." : "Le prime opere arriveranno presto."}</p>`;
       const q = new URLSearchParams(); if (state.tema) q.set("tema", state.tema); if (state.tecnica) q.set("tecnica", state.tecnica);
       history.replaceState(null, "", location.pathname + (q.toString() ? "?" + q : ""));
       const t = state.tema ? label(cfg.temi, state.tema) : "", k = state.tecnica ? label(cfg.tecniche, state.tecnica) : "";
