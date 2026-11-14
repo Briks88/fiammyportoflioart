@@ -1,6 +1,32 @@
 {
   "works": [
     {
+      "title": "Opaleye",
+      "year": "2020",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/opaleye-mwgwql1k.jpg",
+      "id": "opaleye"
+    },
+    {
+      "title": "Serpecorno",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/serpecorno-mwgwpvj0.jpg",
+      "id": "serpecorno"
+    },
+    {
       "title": "Wampus",
       "year": "2017",
       "tecnica": "pantoni",
