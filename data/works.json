@@ -8,7 +8,7 @@
         "natura"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/estate-mwgyct1p.jpg",
       "id": "estate"
     },
@@ -20,7 +20,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/drago-leonino-mwgyblan.jpg",
       "id": "drago-leonino"
     },
@@ -32,7 +32,7 @@
         "animali"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/bozza-pesciolino-mwgy64x1.jpg",
       "id": "bozza-pesciolino"
     },
@@ -44,7 +44,7 @@
         "animali"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/bozza-leone-mwgy5h2b.jpg",
       "id": "bozza-leone"
     },
@@ -56,7 +56,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/bozza-drago-marino-mwgy4k3b.jpg",
       "id": "bozza-drago-marino"
     },
@@ -68,7 +68,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/bozza-drago-mwgy1n7d.jpg",
       "id": "bozza-drago"
     },
@@ -80,7 +80,7 @@
         "animali"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/studio-di-mastino-mwgxznqy.jpg",
       "id": "studio-di-mastino"
     },
@@ -92,7 +92,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi del videogame \"Dragonvale\"",
-      "featured": true,
+      "featured": false,
       "image": "images/drago-verde-mwgxk5ez.jpg",
       "id": "drago-verde"
     },
