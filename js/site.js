@@ -149,6 +149,14 @@
       const t = state.tema ? label(cfg.temi, state.tema) : "", k = state.tecnica ? label(cfg.tecniche, state.tecnica) : "";
       $("#page-title").textContent = [t, k].filter(Boolean).join(" · ") || "Tutte le opere";
     }
+    if (works.length) {
+      const base = (cfg.siteUrl || location.origin).replace(/\/$/, "");
+      const ld = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Opere — " + cfg.siteTitle, url: base + "/opere.html",
+        mainEntity: { "@type": "ItemList", itemListElement: works.map((w, i) => ({ "@type": "ListItem", position: i + 1, item: { "@type": "VisualArtwork", name: w.title,
+          image: base + "/" + String(w.image).replace(/^\//, ""), ...(w.year ? { dateCreated: isoDate(w) } : {}), artMedium: label(cfg.tecniche, w.tecnica),
+          ...(w.description ? { description: w.description } : {}), creator: { "@type": "Person", name: cfg.artist || "Fiammetta Codari" } } })) } };
+      const el = document.createElement("script"); el.type = "application/ld+json"; el.textContent = JSON.stringify(ld); document.head.appendChild(el);
+    }
     document.querySelector(".filters").addEventListener("click", (e) => { const c = e.target.closest(".chip"); if (!c) return; state[c.dataset.k] = c.dataset.v; render(); });
     $("#grid").addEventListener("click", (e) => { const b = e.target.closest(".card"); if (b) openLb(shown, +b.dataset.i); });
     render();
