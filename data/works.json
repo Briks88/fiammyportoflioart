@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Testa meccanica",
+      "year": "2011",
+      "tecnica": "schizzo-a-matita",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/testa-meccanica-mwgvz39u.jpg",
+      "id": "testa-meccanica"
+    },
+    {
       "title": "Città nebbiosa",
       "year": "2026",
       "tecnica": "acquerello",
