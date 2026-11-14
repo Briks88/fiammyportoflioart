@@ -105,7 +105,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi del videogame \"Dragonvale\"",
-      "featured": false,
+      "featured": true,
       "image": "images/drago-rosso-mwgxc3sz.jpg",
       "id": "drago-rosso"
     },
@@ -117,7 +117,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga \"Pokèmon\"",
-      "featured": false,
+      "featured": true,
       "image": "images/alakazam-mwgx5j7b.jpg",
       "id": "alakazam"
     },
@@ -155,7 +155,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga \"Pokémon\"",
-      "featured": false,
+      "featured": true,
       "image": "images/vaporeon-mwgwxywf.jpg",
       "id": "vaporeon"
     },
@@ -181,7 +181,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": false,
+      "featured": true,
       "image": "images/serpecorno-mwgwpvj0.jpg",
       "id": "serpecorno"
     },
@@ -207,7 +207,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": false,
+      "featured": true,
       "image": "images/augurey-mwgwm8nk.jpg",
       "id": "augurey"
     },
@@ -284,7 +284,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": false,
+      "featured": true,
       "image": "images/grugnocorto-svedese-mwgwaxjq.jpg",
       "id": "grugnocorto-svedese"
     },
@@ -309,7 +309,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/fenice-mwgw25bs.jpg",
       "id": "fenice"
     },
@@ -357,7 +357,7 @@
         "natura"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/autunno-mwgvpos8.jpg",
       "id": "autunno"
     },
@@ -369,7 +369,7 @@
         "natura"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/inverno-mwgvp1h0.jpg",
       "id": "inverno"
     },
@@ -381,7 +381,7 @@
         "ritratti"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/mezzo-volto-a-pastelli-mwgvm8ry.jpg",
       "id": "mezzo-volto-a-pastelli"
     },
@@ -393,7 +393,7 @@
         "fantasy"
       ],
       "description": "Preso ispirazione dal personaggio di Ignitus del videogame \"The legend of Spyro - A new beginning\" 2005",
-      "featured": false,
+      "featured": true,
       "image": "images/ignitus-mwgvfeja.jpg",
       "id": "ignitus"
     },
@@ -405,7 +405,7 @@
         "animali"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/pesce-combattente-rosso-mwgvcgvn.jpg",
       "id": "pesce-combattente-rosso"
     },
@@ -417,7 +417,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/ippocampo-mwgv939g.jpg",
       "id": "ippocampo"
     },
@@ -429,7 +429,7 @@
         "altro"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/open-your-mind-mwgv4ddc.jpg",
       "id": "open-your-mind"
     }
