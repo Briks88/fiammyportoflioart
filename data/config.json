@@ -1,9 +1,9 @@
 {
-  "siteTitle": "Fiammetta Codari",
+  "siteTitle": "Mondo d'Inchiostro Matitoso",
   "tagline": "Illustrazioni, creature e bestiari dal taccuino alla tela",
   "bio": "Sono Fiammetta Codari, artista e illustratrice. Disegno creature fantastiche, animali e paesaggi naturali, lavorando con olio su tela, acrilico, acquerello, pennarelli Pantone e schizzi a matita e penna.\n\nQuesto spazio raccoglie una selezione dei miei lavori: per commissioni o collaborazioni scrivimi pure.",
   "instagram": "https://www.instagram.com/",
-  "email": "",
+  "email": "contatti@mondodinchiostromatitoso.it",
   "temi": [
     {
       "id": "fantasy",
@@ -49,5 +49,6 @@
     "repo": "fiammyportoflioart",
     "branch": "main"
   },
-  "pinHash": "af2aece91647e72ab3fb5fbb67ea4c8336ec63aac2f2f8232c9e1e0f65eaa4cd"
+  "pinHash": "af2aece91647e72ab3fb5fbb67ea4c8336ec63aac2f2f8232c9e1e0f65eaa4cd",
+  "artist": "Fiammetta Codari"
 }

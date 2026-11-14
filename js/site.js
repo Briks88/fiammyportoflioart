@@ -24,12 +24,12 @@
   }
 
   function chrome(page) {
-    document.title = (page === "opere" ? "Opere — " : "") + cfg.siteTitle;
+    document.title = page === "opere" ? "Opere — " + cfg.siteTitle : cfg.siteTitle + (cfg.artist ? " — " + cfg.artist : "");
     const home = page === "home";
     const link = (hash, txt) => `<a href="${home ? "" : "index.html"}#${hash}">${txt}</a>`;
     $("#header").innerHTML = `
       <div class="wrap">
-        <a class="brand" href="index.html">${esc(cfg.siteTitle)}</a>
+        <a class="brand" href="index.html"><img src="images/logo.svg" alt="" width="34" height="34"><span>${esc(cfg.siteTitle)}</span></a>
         <button class="menu-btn" aria-label="Menu" aria-expanded="false">${ICON.menu}</button>
         <nav class="nav" aria-label="Principale">
           <a href="index.html" ${home ? 'aria-current="page"' : ""}>Home</a>
@@ -41,7 +41,7 @@
     const btn = $(".menu-btn"), nav = $(".nav");
     btn.onclick = () => { const o = nav.classList.toggle("open"); btn.setAttribute("aria-expanded", o); };
     nav.addEventListener("click", (e) => { if (e.target.closest("a")) nav.classList.remove("open"); });
-    $("#footer").innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} ${esc(cfg.siteTitle)}. Tutti i diritti riservati.</span><span>Le opere non possono essere riprodotte senza autorizzazione.</span></div>`;
+    $("#footer").innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} ${esc(cfg.artist || cfg.siteTitle)}. Tutti i diritti riservati.</span><span>Le opere non possono essere riprodotte senza autorizzazione.</span></div>`;
   }
 
   /* ---------- Lightbox ---------- */
@@ -78,6 +78,7 @@
   /* ---------- Home ---------- */
   function home() {
     $("#hero-title").textContent = cfg.siteTitle;
+    if (cfg.artist) $("#hero-artist").textContent = cfg.artist;
     $("#hero-tagline").textContent = cfg.tagline;
     let feat = works.filter((w) => w.featured);
     if (!feat.length) feat = works.slice(0, 8);

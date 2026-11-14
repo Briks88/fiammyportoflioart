@@ -234,7 +234,8 @@
   function renderSite() {
     const el = $("#tab-site");
     el.innerHTML = `<div class="bar"><h2>Informazioni del sito</h2></div><div class="form">
-      <label class="f">Nome<input data-k="siteTitle" value="${esc(cfg.siteTitle)}"></label>
+      <label class="f">Titolo del sito<input data-k="siteTitle" value="${esc(cfg.siteTitle)}"></label>
+      <label class="f">Nome dell'artista<input data-k="artist" value="${esc(cfg.artist || "")}"></label>
       <label class="f">Frase sotto il titolo<input data-k="tagline" value="${esc(cfg.tagline)}"></label>
       <label class="f">Chi sono (una riga vuota separa i paragrafi)<textarea data-k="bio" style="min-height:200px">${esc(cfg.bio)}</textarea></label>
       <label class="f">Link profilo Instagram<input data-k="instagram" value="${esc(cfg.instagram)}" placeholder="https://www.instagram.com/…"></label>
