@@ -37,7 +37,7 @@
     const t = $("#toast"); t.textContent = msg; t.className = "toast show" + (bad ? " bad" : "");
     clearTimeout(toast.t); toast.t = setTimeout(() => (t.className = "toast"), bad ? 6000 : 3200);
   }
-  function setDirty(v = true) { dirty = v; $("#dirty").hidden = !v; $("#publish").disabled = !v; }
+  function setDirty(v = true) { dirty = v; document.body.classList.toggle("is-dirty", v); $("#dirty").hidden = !v; $("#publish").disabled = !v; }
   window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
 
   /* ---------- GitHub API ---------- */
@@ -126,18 +126,19 @@
         <div><b>${esc(w.title)} ${w.featured ? '<span class="star" title="In galleria in home">★</span>' : ""}</b>
           <small>${esc(lab(cfg.tecniche, w.tecnica))}${w.year ? " · " + esc(w.year) : ""}</small><br>
           ${(w.temi || []).map((t) => `<span class="tag">${esc(lab(cfg.temi, t))}</span>`).join("")}</div>
-        <div class="acts"><button class="btn small" data-a="edit">Modifica</button><button class="btn small danger" data-a="del">Elimina</button></div></div>`).join("") || '<p class="help">Nessuna opera. Aggiungine una!</p>'}</div>`;
+        <div class="acts"><button class="btn small" data-a="edit">Modifica</button><button class="btn small danger" data-a="del">Elimina</button></div><span class="chev" aria-hidden="true">›</span></div>`).join("") || '<p class="help">Nessuna opera. Aggiungine una!</p>'}</div>`;
     $("#w-new").onclick = () => workDialog();
     el.onclick = (e) => {
-      const b = e.target.closest("button[data-a]"); if (!b) return;
-      const id = b.closest(".wrow").dataset.id, w = data.works.find((x) => x.id === id);
-      if (b.dataset.a === "edit") workDialog(w);
-      else if (confirm(`Eliminare «${w.title}»? L'opera sparirà dal sito dopo la pubblicazione.`)) {
-        data.works = data.works.filter((x) => x.id !== id);
-        if (!data.works.some((x) => x.image === w.image)) { delete pendingImages[w.image]; removedImages.add(w.image); }
-        setDirty(); renderWorks(); renderCats();
-      }
+      const row = e.target.closest(".wrow"); if (!row) return;
+      const w = data.works.find((x) => x.id === row.dataset.id), b = e.target.closest("button[data-a]");
+      if (b && b.dataset.a === "del") removeWork(w); else workDialog(w);
     };
+  }
+  function removeWork(w) {
+    if (!confirm(`Eliminare «${w.title}»? L'opera sparirà dal sito dopo la pubblicazione.`)) return false;
+    data.works = data.works.filter((x) => x.id !== w.id);
+    if (!data.works.some((x) => x.image === w.image)) { delete pendingImages[w.image]; removedImages.add(w.image); }
+    setDirty(); renderWorks(); renderCats(); return true;
   }
 
   async function resize(file, max = 1800) {
@@ -153,18 +154,25 @@
     let newImg = null; // {path, b64}
     const d = $("#dlg");
     d.innerHTML = `<form class="dlg-in" method="dialog">
-      <h3>${isNew ? "Nuova opera" : "Modifica opera"}</h3>
-      <label class="f">Immagine ${isNew ? "*" : "(lascia vuoto per mantenere l'attuale)"}<input type="file" id="d-file" accept="image/*"></label>
-      <img class="preview" id="d-prev" alt="" ${cur.image ? `src="${esc(imgSrc(cur.image))}"` : "hidden"}>
-      <label class="f">Titolo *<input id="d-title" value="${esc(cur.title)}" required></label>
-      <label class="f">Anno<input id="d-year" value="${esc(cur.year)}" inputmode="numeric" placeholder="es. 2024"></label>
-      <label class="f">Tecnica<select id="d-tec">${cfg.tecniche.map((t) => `<option value="${esc(t.id)}" ${t.id === cur.tecnica ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></label>
-      <div class="f"><span style="font-size:.82rem;color:var(--ink-soft)">Temi</span><div class="checks">${cfg.temi.map((t) => `<label><input type="checkbox" value="${esc(t.id)}" ${(cur.temi || []).includes(t.id) ? "checked" : ""}>${esc(t.label)}</label>`).join("")}</div></div>
-      <label class="f">Descrizione<textarea id="d-desc">${esc(cur.description)}</textarea></label>
-      <label class="checks"><span style="display:contents"><input type="checkbox" id="d-feat" ${cur.featured ? "checked" : ""}> Mostra nella galleria in home</span></label>
-      <div class="dlg-foot"><button class="btn" value="cancel" type="button" id="d-cancel">Annulla</button><button class="btn solid" type="submit" id="d-ok">Salva</button></div></form>`;
+      <div class="dlg-head"><h3>${isNew ? "Nuova opera" : "Modifica opera"}</h3><button type="button" class="dlg-x" id="d-x" aria-label="Chiudi">&times;</button></div>
+      <div class="dlg-body">
+        <div class="f"><span class="fl">Immagine ${isNew ? "*" : ""}</span>
+          <img class="preview" id="d-prev" alt="" ${cur.image ? `src="${esc(imgSrc(cur.image))}"` : "hidden"}>
+          <label class="btn small filebtn" for="d-file">${isNew ? "Scegli o scatta una foto" : "Cambia immagine"}</label>
+          <input type="file" id="d-file" accept="image/*" class="sr"></div>
+        <label class="f">Titolo *<input id="d-title" value="${esc(cur.title)}" required></label>
+        <div class="two">
+          <label class="f">Anno<input id="d-year" value="${esc(cur.year)}" inputmode="numeric" placeholder="es. 2024"></label>
+          <label class="f">Tecnica<select id="d-tec">${cfg.tecniche.map((t) => `<option value="${esc(t.id)}" ${t.id === cur.tecnica ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></label>
+        </div>
+        <div class="f"><span class="fl">Temi</span><div class="checks">${cfg.temi.map((t) => `<label><input type="checkbox" value="${esc(t.id)}" ${(cur.temi || []).includes(t.id) ? "checked" : ""}>${esc(t.label)}</label>`).join("")}</div></div>
+        <label class="f">Descrizione<textarea id="d-desc">${esc(cur.description)}</textarea></label>
+        <label class="switch"><input type="checkbox" id="d-feat" ${cur.featured ? "checked" : ""}> Mostra nella galleria in home</label>
+      </div>
+      <div class="dlg-foot">${isNew ? "" : '<button class="btn danger" type="button" id="d-del">Elimina</button><span class="sp"></span>'}<button class="btn" type="button" id="d-cancel">Annulla</button><button class="btn solid" type="submit" id="d-ok">Salva</button></div></form>`;
     d.showModal();
-    $("#d-cancel").onclick = () => d.close();
+    $("#d-cancel").onclick = () => d.close(); $("#d-x").onclick = () => d.close();
+    if (!isNew) $("#d-del").onclick = () => { if (removeWork(cur)) d.close(); };
     $("#d-file").onchange = async (e) => {
       const f = e.target.files[0]; if (!f) return;
       try {
@@ -181,7 +189,7 @@
       e.preventDefault();
       const rec = cur;
       rec.title = title; rec.year = $("#d-year").value.trim(); rec.tecnica = $("#d-tec").value;
-      rec.temi = [...d.querySelectorAll(".checks input[value]")].filter((c) => c.checked).map((c) => c.value);
+      rec.temi = [...d.querySelectorAll(".dlg-body .checks input[value]")].filter((c) => c.checked).map((c) => c.value);
       rec.description = $("#d-desc").value.trim(); rec.featured = $("#d-feat").checked;
       if (isNew) { let id = slug(title), n = 2; while (data.works.some((x) => x.id === id)) id = slug(title) + "-" + n++; rec.id = id; }
       if (newImg) {
@@ -249,7 +257,7 @@
       <li>«Permissions → Contents»: <code>Read and write</code></li>
       <li>Incolla il token qui sotto.</li></ol></div>
       <label class="f">Token GitHub<input id="g-token" type="password" value="${esc(token)}" placeholder="github_pat_…" autocomplete="off"></label>
-      <div class="crow" style="grid-template-columns:1fr 1fr 1fr">
+      <div class="grid3">
         <label class="f">Utente<input data-g="owner" value="${esc(g.owner)}"></label>
         <label class="f">Repository<input data-g="repo" value="${esc(g.repo)}"></label>
         <label class="f">Branch<input data-g="branch" value="${esc(g.branch)}"></label></div>
