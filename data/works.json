@@ -77,7 +77,6 @@
       "year": "2014",
       "tecnica": "pantoni",
       "temi": [
-        "natura",
         "animali"
       ],
       "description": "",
@@ -90,8 +89,7 @@
       "year": "2012",
       "tecnica": "tecnica-mista",
       "temi": [
-        "fantasy",
-        "animali"
+        "fantasy"
       ],
       "description": "",
       "featured": true,
