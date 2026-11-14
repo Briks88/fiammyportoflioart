@@ -83,7 +83,7 @@
     await loadLocal();
     const stored = cfg.pinHash || store.get("fc_pin_hash") || "";
     if (sess.get("fc_unlocked") === "1" && stored) return start();
-    const g = $("#gate"); g.hidden = false;
+    const g = $("#gate"); g.hidden = false; $("#boot").hidden = true;
     const first = !stored;
     $("#gate-title").textContent = first ? "Crea il tuo PIN" : "Area riservata";
     $("#gate-msg").textContent = first ? "Scegli un PIN di almeno 4 cifre per accedere al pannello." : "Inserisci il PIN per modificare le opere.";
@@ -103,7 +103,7 @@
 
   async function start(needsSave) {
     if (token) { try { await loadRemote(); if (needsSave) cfg.pinHash = store.get("fc_pin_hash"); } catch (e) { toast("Dati da GitHub non letti: " + e.message, true); } }
-    $("#app").hidden = false;
+    $("#app").hidden = false; $("#boot").hidden = true;
     renderAll(); setDirty(!!needsSave);
   }
 
