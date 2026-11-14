@@ -1,7 +1,7 @@
 {
   "works": [
     {
-      "title": "Ungaro spinato",
+      "title": "Wampus",
       "year": "2017",
       "tecnica": "pantoni",
       "temi": [
@@ -10,6 +10,57 @@
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
       "featured": true,
+      "image": "images/wampus-mwgwn2u2.jpg",
+      "id": "wampus"
+    },
+    {
+      "title": "Augurey",
+      "year": "2018",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/augurey-mwgwm8nk.jpg",
+      "id": "augurey"
+    },
+    {
+      "title": "Cornolungo romeno",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/cornolungo-romeno-mwgwkn4d.jpg",
+      "id": "cornolungo-romeno"
+    },
+    {
+      "title": "Manticora",
+      "year": "2018",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/manticora-mwgwikyb.jpg",
+      "id": "manticora"
+    },
+    {
+      "title": "Ungaro spinato",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": false,
       "image": "images/ungaro-spinato-mwgwdb42.jpg",
       "id": "ungaro-spinato"
     },
@@ -22,7 +73,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/gallese-verde-mwgwclam.jpg",
       "id": "gallese-verde"
     },
@@ -35,7 +86,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/petardo-cinese-mwgwbvxm.jpg",
       "id": "petardo-cinese"
     },
@@ -48,7 +99,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/grugnocorto-svedese-mwgwaxjq.jpg",
       "id": "grugnocorto-svedese"
     },
@@ -61,7 +112,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": true,
+      "featured": false,
       "image": "images/dorsorugoso-di-norvegia-mwgw8xdf.jpg",
       "id": "dorsorugoso-di-norvegia"
     },
