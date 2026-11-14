@@ -9,7 +9,23 @@
     set: (k, v) => { try { localStorage.setItem(k, v); } catch {} },
     del: (k) => { try { localStorage.removeItem(k); } catch {} },
   };
-  const sha256 = async (s) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+  const sess = {
+    get: (k) => { try { return sessionStorage.getItem(k); } catch { return null; } },
+    set: (k, v) => { try { sessionStorage.setItem(k, v); } catch {} },
+  };
+  const showFatal = (e) => {
+    console.error(e);
+    const box = document.createElement("pre");
+    box.style.cssText = "white-space:pre-wrap;padding:16px;margin:16px;border:1px solid #9a2f27;color:#9a2f27;background:#fffdf8";
+    box.textContent = "Errore nel pannello: " + (e && e.message || e) + "\n\nBrowser: " + navigator.userAgent;
+    document.body.prepend(box);
+  };
+  window.addEventListener("error", (ev) => showFatal(ev.error || ev.message));
+  window.addEventListener("unhandledrejection", (ev) => showFatal(ev.reason));
+  const sha256 = async (s) => {
+    if (!(window.crypto && crypto.subtle)) throw new Error("Questo browser non supporta la cifratura necessaria (serve una connessione HTTPS e un browser aggiornato).");
+    return [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+  };
   const pinHash = (pin) => sha256("fcodari-portfolio:" + pin);
 
   let cfg, data, dirty = false;
@@ -66,7 +82,7 @@
   async function gate() {
     await loadLocal();
     const stored = cfg.pinHash || store.get("fc_pin_hash") || "";
-    if (sessionStorage.getItem("fc_unlocked") === "1" && stored) return start();
+    if (sess.get("fc_unlocked") === "1" && stored) return start();
     const g = $("#gate"); g.hidden = false;
     const first = !stored;
     $("#gate-title").textContent = first ? "Crea il tuo PIN" : "Area riservata";
@@ -77,10 +93,10 @@
       const pin = $("#pin").value, h = await pinHash(pin);
       if (first) {
         if (pin !== $("#pin2").value) { $("#gate-err").textContent = "I due PIN non coincidono."; return; }
-        cfg.pinHash = h; store.set("fc_pin_hash", h); sessionStorage.setItem("fc_unlocked", "1");
+        cfg.pinHash = h; store.set("fc_pin_hash", h); sess.set("fc_unlocked", "1");
         g.hidden = true; start(true);
       } else if (h === stored) {
-        sessionStorage.setItem("fc_unlocked", "1"); g.hidden = true; start();
+        sess.set("fc_unlocked", "1"); g.hidden = true; start();
       } else { $("#gate-err").textContent = "PIN errato."; $("#pin").value = ""; }
     };
   }
