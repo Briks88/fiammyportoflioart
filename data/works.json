@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Ignitus",
+      "year": "2015",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "Preso ispirazione dal personaggio di Ignitus del videogame \"The legend of Spyro - A new beginning\" 2005",
+      "featured": true,
+      "image": "images/ignitus-mwgvfeja.jpg",
+      "id": "ignitus"
+    },
+    {
       "title": "Pesce combattente rosso",
       "year": "2014",
       "tecnica": "pantoni",
