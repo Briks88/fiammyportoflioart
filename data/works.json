@@ -1,6 +1,30 @@
 {
   "works": [
     {
+      "title": "Autunno",
+      "year": "2026",
+      "tecnica": "acquerello",
+      "temi": [
+        "natura"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/autunno-mwgvpos8.jpg",
+      "id": "autunno"
+    },
+    {
+      "title": "Inverno",
+      "year": "2026",
+      "tecnica": "acquerello",
+      "temi": [
+        "natura"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/inverno-mwgvp1h0.jpg",
+      "id": "inverno"
+    },
+    {
       "title": "Mezzo volto a pastelli",
       "year": "2009",
       "tecnica": "pastello",
