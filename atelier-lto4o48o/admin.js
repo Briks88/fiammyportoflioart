@@ -22,6 +22,9 @@
   };
   window.addEventListener("error", (ev) => showFatal(ev.error || ev.message));
   window.addEventListener("unhandledrejection", (ev) => showFatal(ev.reason));
+  const MONTHS = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+  const fmtDate = (w) => [w.day, w.month ? MONTHS[w.month - 1] : "", w.year].filter(Boolean).join(" ");
+  const daysIn = (m, y) => new Date(+y || 2000, m, 0).getDate();
   const sha256 = async (s) => {
     if (!(window.crypto && crypto.subtle)) throw new Error("Questo browser non supporta la cifratura necessaria (serve una connessione HTTPS e un browser aggiornato).");
     return [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, "0")).join("");
@@ -124,7 +127,7 @@
       <div class="wlist">${data.works.map((w) => `<div class="wrow" data-id="${esc(w.id)}">
         <img src="${esc(imgSrc(w.image))}" alt="">
         <div><b>${esc(w.title)} ${w.featured ? '<span class="star" title="In galleria in home">★</span>' : ""}</b>
-          <small>${esc(lab(cfg.tecniche, w.tecnica))}${w.year ? " · " + esc(w.year) : ""}</small><br>
+          <small>${esc(lab(cfg.tecniche, w.tecnica))}${fmtDate(w) ? " · " + esc(fmtDate(w)) : '<span class="tag warn">data mancante</span>'}</small><br>
           ${(w.temi || []).map((t) => `<span class="tag">${esc(lab(cfg.temi, t))}</span>`).join("")}</div>
         <div class="acts"><button class="btn small" data-a="edit">Modifica</button><button class="btn small danger" data-a="del">Elimina</button></div><span class="chev" aria-hidden="true">›</span></div>`).join("") || '<p class="help">Nessuna opera. Aggiungine una!</p>'}</div>`;
     $("#w-new").onclick = () => workDialog();
@@ -161,16 +164,29 @@
           <label class="btn small filebtn" for="d-file">${isNew ? "Scegli o scatta una foto" : "Cambia immagine"}</label>
           <input type="file" id="d-file" accept="image/*" class="sr"></div>
         <label class="f">Titolo *<input id="d-title" value="${esc(cur.title)}" required></label>
-        <div class="two">
-          <label class="f">Anno<input id="d-year" value="${esc(cur.year)}" inputmode="numeric" placeholder="es. 2024"></label>
-          <label class="f">Tecnica<select id="d-tec">${cfg.tecniche.map((t) => `<option value="${esc(t.id)}" ${t.id === cur.tecnica ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></label>
-        </div>
+        <div class="f"><span class="fl">Data dell'opera <em>(solo l'anno è obbligatorio)</em></span>
+          <div class="date3">
+            <label class="f sub">Anno *<input id="d-year" value="${esc(cur.year)}" required inputmode="numeric" pattern="[0-9]{4}" maxlength="4" placeholder="2024" autocomplete="off"></label>
+            <label class="f sub">Mese<select id="d-month"><option value="">—</option>${MONTHS.map((m, i) => `<option value="${i + 1}" ${+cur.month === i + 1 ? "selected" : ""}>${m}</option>`).join("")}</select></label>
+            <label class="f sub">Giorno<select id="d-day"></select></label>
+          </div></div>
+        <label class="f">Tecnica<select id="d-tec">${cfg.tecniche.map((t) => `<option value="${esc(t.id)}" ${t.id === cur.tecnica ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></label>
         <div class="f"><span class="fl">Temi</span><div class="checks">${cfg.temi.map((t) => `<label><input type="checkbox" value="${esc(t.id)}" ${(cur.temi || []).includes(t.id) ? "checked" : ""}>${esc(t.label)}</label>`).join("")}</div></div>
         <label class="f">Descrizione<textarea id="d-desc">${esc(cur.description)}</textarea></label>
         <label class="switch"><input type="checkbox" id="d-feat" ${cur.featured ? "checked" : ""}> Mostra nella galleria in home</label>
       </div>
       <div class="dlg-foot">${isNew ? "" : '<button class="btn danger" type="button" id="d-del">Elimina</button><span class="sp"></span>'}<button class="btn" type="button" id="d-cancel">Annulla</button><button class="btn solid" type="submit" id="d-ok">Salva</button></div></form>`;
     d.showModal();
+    // il giorno si sceglie solo dopo il mese e si adatta alla lunghezza del mese
+    const fillDays = (keep) => {
+      const m = +$("#d-month").value, sel = $("#d-day");
+      sel.disabled = !m;
+      sel.innerHTML = '<option value="">—</option>' + (m ? Array.from({ length: daysIn(m, $("#d-year").value) }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join("") : "");
+      if (m && keep && keep <= daysIn(m, $("#d-year").value)) sel.value = keep;
+    };
+    fillDays(+cur.day);
+    $("#d-month").onchange = () => fillDays(+$("#d-day").value);
+    $("#d-year").oninput = () => { $("#d-year").setCustomValidity(""); fillDays(+$("#d-day").value); };
     $("#d-cancel").onclick = () => d.close(); $("#d-x").onclick = () => d.close();
     if (!isNew) $("#d-del").onclick = () => { if (removeWork(cur)) d.close(); };
     $("#d-file").onchange = async (e) => {
@@ -184,11 +200,16 @@
     };
     $("#d-ok").onclick = (e) => {
       const title = $("#d-title").value.trim();
-      if (!title) return;
+      const yr = $("#d-year"), yv = yr.value.trim(), thisYear = new Date().getFullYear();
+      yr.setCustomValidity(/^\d{4}$/.test(yv) && +yv >= 1900 && +yv <= thisYear + 1 ? "" : `Inserisci un anno di 4 cifre tra 1900 e ${thisYear + 1} (es. ${thisYear}).`);
+      if (!d.querySelector("form").reportValidity()) { e.preventDefault(); return; }
       if (isNew && !newImg) { e.preventDefault(); toast("Seleziona un'immagine.", true); return; }
       e.preventDefault();
       const rec = cur;
       rec.title = title; rec.year = $("#d-year").value.trim(); rec.tecnica = $("#d-tec").value;
+      const mo = +$("#d-month").value, dy = mo ? +$("#d-day").value : 0;
+      if (mo) rec.month = mo; else delete rec.month;
+      if (dy) rec.day = dy; else delete rec.day;
       rec.temi = [...d.querySelectorAll(".dlg-body .checks input[value]")].filter((c) => c.checked).map((c) => c.value);
       rec.description = $("#d-desc").value.trim(); rec.featured = $("#d-feat").checked;
       if (isNew) { let id = slug(title), n = 2; while (data.works.some((x) => x.id === id)) id = slug(title) + "-" + n++; rec.id = id; }

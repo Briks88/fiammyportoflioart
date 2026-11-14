@@ -141,3 +141,10 @@ dialog[open] { display: flex; }
 @media (min-width: 900px) { .wlist { grid-template-columns: 1fr 1fr; } .wrow { grid-template-columns: 72px 1fr auto; } .wrow .chev { display: none; } }
 @media (max-width: 899px) and (min-width: 721px) { .wrow .chev { display: none; } }
 @media (hover: none) { .wrow:hover { border-color: var(--line); } }
+
+/* data dell'opera: anno obbligatorio, mese e giorno facoltativi */
+.date3 { display: grid; grid-template-columns: 1fr 1.7fr 1fr; gap: 10px; }
+.f.sub { font-size: .78rem; }
+.fl em { font-style: normal; opacity: .75; }
+.tag.warn { background: #f1d9d6; color: var(--accent); margin-left: 8px; }
+select:disabled { opacity: .5; }

@@ -12,6 +12,9 @@
   };
 
   let cfg, works;
+  const MONTHS = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"];
+  const fmtDate = (w) => [w.day, w.month ? MONTHS[w.month - 1] : "", w.year].filter(Boolean).join(" ");
+  const isoDate = (w) => [w.year, w.month && String(w.month).padStart(2, "0"), w.month && w.day && String(w.day).padStart(2, "0")].filter(Boolean).join("-");
   const label = (list, id) => (list.find((x) => x.id === id) || {}).label || id;
 
   async function load() {
@@ -69,7 +72,7 @@
   function showLb() {
     const w = lbList[lbIdx];
     const img = $("img", lbEl); img.src = w.image; img.alt = w.title;
-    $(".lb-cap", lbEl).innerHTML = `<b>${esc(w.title)}</b><small>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? " · " + esc(w.year) : ""}</small>${w.description ? `<p>${esc(w.description)}</p>` : ""}`;
+    $(".lb-cap", lbEl).innerHTML = `<b>${esc(w.title)}</b><small>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? ` · <time datetime="${esc(isoDate(w))}">${esc(fmtDate(w))}</time>` : ""}</small>${w.description ? `<p>${esc(w.description)}</p>` : ""}`;
   }
   function openLb(list, i) { ensureLb(); lbList = list; lbIdx = i; showLb(); lbEl.classList.add("open"); document.body.style.overflow = "hidden"; $(".x", lbEl).focus(); }
   function stepLb(d) { lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLb(); }
