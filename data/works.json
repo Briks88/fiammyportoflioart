@@ -1,6 +1,19 @@
 {
   "works": [
     {
+      "title": "Pesce combattente rosso",
+      "year": "2014",
+      "tecnica": "pantoni",
+      "temi": [
+        "natura",
+        "animali"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/pesce-combattente-rosso-mwgvcgvn.jpg",
+      "id": "pesce-combattente-rosso"
+    },
+    {
       "title": "Ippocampo",
       "year": "2012",
       "tecnica": "tecnica-mista",
