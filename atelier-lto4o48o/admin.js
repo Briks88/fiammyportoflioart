@@ -70,6 +70,35 @@
     if (cur) await gh(path, { method: "DELETE", body: JSON.stringify({ message, sha: cur.sha, branch: cfg.github.branch }) });
   }
 
+  // Pubblica tutte le modifiche in UN SOLO commit (un solo deploy su Vercel, che ha un limite giornaliero).
+  async function gitApi(path, method = "GET", body) {
+    const { owner, repo } = cfg.github;
+    const r = await fetch(`https://api.github.com/repos/${owner}/${repo}/${path}`, {
+      method, headers: { Accept: "application/vnd.github+json", Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: body ? JSON.stringify(body) : undefined,
+    });
+    if (!r.ok) { const j = await r.json().catch(() => ({})); const e = new Error(j.message || "Errore " + r.status); e.status = r.status; throw e; }
+    return r.json();
+  }
+  async function commitAll(files, deletions, message) {
+    const { branch } = cfg.github;
+    const ref = await gitApi(`git/ref/heads/${branch}`);
+    const headSha = ref.object.sha, head = await gitApi(`git/commits/${headSha}`);
+    const tree = [];
+    for (let i = 0; i < files.length; i += 4) { // blob in parallelo, a gruppi di 4
+      const group = await Promise.all(files.slice(i, i + 4).map(async (f) => {
+        const b = await gitApi("git/blobs", "POST", { content: f.content, encoding: f.encoding });
+        return { path: f.path, mode: "100644", type: "blob", sha: b.sha };
+      }));
+      tree.push(...group);
+    }
+    for (const path of deletions) tree.push({ path, mode: "100644", type: "blob", sha: null });
+    const t = await gitApi("git/trees", "POST", { base_tree: head.tree.sha, tree });
+    const c = await gitApi("git/commits", "POST", { message, tree: t.sha, parents: [headSha] });
+    await gitApi(`git/refs/heads/${branch}`, "PATCH", { sha: c.sha });
+    return c.sha;
+  }
+
   /* ---------- Caricamento ---------- */
   async function loadLocal() {
     const bust = "?t=" + Date.now();
@@ -306,10 +335,24 @@
     const btn = $("#publish"); btn.disabled = true; btn.textContent = "Pubblico…";
     try {
       const used = new Set(data.works.map((w) => w.image));
-      for (const [path, b64] of Object.entries(pendingImages)) { if (used.has(path)) await putFile(path, b64, "Aggiunta immagine " + path); }
-      await putFile("data/works.json", b64utf8(JSON.stringify(data, null, 2) + "\n"), "Aggiorna elenco opere");
-      await putFile("data/config.json", b64utf8(JSON.stringify(cfg, null, 2) + "\n"), "Aggiorna configurazione sito");
-      for (const p of removedImages) { if (!used.has(p) && p.startsWith("images/")) await delFile(p, "Rimuovi immagine " + p).catch(() => {}); }
+      const imgs = Object.entries(pendingImages).filter(([path]) => used.has(path));
+      const gone = [...removedImages].filter((p) => !used.has(p) && p.startsWith("images/"));
+      try {
+        // percorso principale: un solo commit con immagini, dati e configurazione
+        const existing = [];
+        for (const p of gone) { try { if (await gh(p)) existing.push(p); } catch { /* ignora */ } }
+        await commitAll([
+          ...imgs.map(([path, b64]) => ({ path, content: b64, encoding: "base64" })),
+          { path: "data/works.json", content: JSON.stringify(data, null, 2) + "\n", encoding: "utf-8" },
+          { path: "data/config.json", content: JSON.stringify(cfg, null, 2) + "\n", encoding: "utf-8" },
+        ], existing, "Aggiorna opere e configurazione dal pannello");
+      } catch (e1) {
+        console.warn("Commit unico non riuscito, uso il metodo file per file:", e1);
+        for (const [path, b64] of imgs) await putFile(path, b64, "Aggiunta immagine " + path);
+        await putFile("data/works.json", b64utf8(JSON.stringify(data, null, 2) + "\n"), "Aggiorna elenco opere");
+        await putFile("data/config.json", b64utf8(JSON.stringify(cfg, null, 2) + "\n"), "Aggiorna configurazione sito");
+        for (const p of gone) await delFile(p, "Rimuovi immagine " + p).catch(() => {});
+      }
       Object.keys(pendingImages).forEach((k) => delete pendingImages[k]); removedImages.clear();
       setDirty(false); toast("Pubblicato! Il sito si aggiorna in 1–2 minuti.");
     } catch (e) { setDirty(true); toast("Errore: " + e.message, true); }
