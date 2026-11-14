@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Estate",
+      "year": "2026",
+      "tecnica": "acquerello",
+      "temi": [
+        "natura"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/estate-mwgyct1p.jpg",
+      "id": "estate"
+    },
+    {
       "title": "Drago leonino",
       "year": "2018",
       "tecnica": "schizzo",
