@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Mezzo volto a pastelli",
+      "year": "2009",
+      "tecnica": "pastello",
+      "temi": [
+        "ritratti"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/mezzo-volto-a-pastelli-mwgvm8ry.jpg",
+      "id": "mezzo-volto-a-pastelli"
+    },
+    {
       "title": "Ignitus",
       "year": "2015",
       "tecnica": "pantoni",
