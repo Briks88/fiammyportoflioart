@@ -1,6 +1,19 @@
 {
   "works": [
     {
+      "title": "Dorsorugoso di Norvegia",
+      "year": "2017",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
+      "featured": true,
+      "image": "images/dorsorugoso-di-norvegia-mwgw8xdf.jpg",
+      "id": "dorsorugoso-di-norvegia"
+    },
+    {
       "title": "Fenice",
       "year": "2020",
       "tecnica": "pastello",
@@ -8,7 +21,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/fenice-mwgw25bs.jpg",
       "id": "fenice"
     },
@@ -20,7 +33,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/testa-meccanica-mwgvz39u.jpg",
       "id": "testa-meccanica"
     },
@@ -32,7 +45,7 @@
         "altro"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/citta-nebbiosa-mwgvwu4k.jpg",
       "id": "citta-nebbiosa"
     },
@@ -44,7 +57,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/chimera-mwgvuw1j.jpg",
       "id": "chimera"
     },
@@ -56,7 +69,7 @@
         "natura"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/autunno-mwgvpos8.jpg",
       "id": "autunno"
     },
@@ -68,7 +81,7 @@
         "natura"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/inverno-mwgvp1h0.jpg",
       "id": "inverno"
     },
@@ -80,7 +93,7 @@
         "ritratti"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/mezzo-volto-a-pastelli-mwgvm8ry.jpg",
       "id": "mezzo-volto-a-pastelli"
     },
@@ -92,7 +105,7 @@
         "fantasy"
       ],
       "description": "Preso ispirazione dal personaggio di Ignitus del videogame \"The legend of Spyro - A new beginning\" 2005",
-      "featured": true,
+      "featured": false,
       "image": "images/ignitus-mwgvfeja.jpg",
       "id": "ignitus"
     },
@@ -104,7 +117,7 @@
         "animali"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/pesce-combattente-rosso-mwgvcgvn.jpg",
       "id": "pesce-combattente-rosso"
     },
@@ -116,7 +129,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/ippocampo-mwgv939g.jpg",
       "id": "ippocampo"
     },
@@ -128,7 +141,7 @@
         "altro"
       ],
       "description": "",
-      "featured": true,
+      "featured": false,
       "image": "images/open-your-mind-mwgv4ddc.jpg",
       "id": "open-your-mind"
     }
