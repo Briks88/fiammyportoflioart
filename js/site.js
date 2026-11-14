@@ -44,7 +44,7 @@
     const btn = $(".menu-btn"), nav = $(".nav");
     btn.onclick = () => { const o = nav.classList.toggle("open"); btn.setAttribute("aria-expanded", o); };
     nav.addEventListener("click", (e) => { if (e.target.closest("a")) nav.classList.remove("open"); });
-    $("#footer").innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} ${esc(cfg.artist || cfg.siteTitle)}. Tutti i diritti riservati.</span><span>Le opere non possono essere riprodotte senza autorizzazione.</span></div>`;
+    $("#footer").innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} ${esc(cfg.artist || cfg.siteTitle)}. Tutti i diritti riservati.</span><span>Le opere non possono essere riprodotte senza autorizzazione. Questo sito raccoglie statistiche di visita anonime.</span></div>`;
   }
 
   /* ---------- Lightbox ---------- */
