@@ -1,6 +1,19 @@
 {
   "works": [
     {
+      "title": "Drago rosso",
+      "year": "2019",
+      "tecnica": "pantoni",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi del videogame \"Dragonvale\"",
+      "featured": true,
+      "image": "images/drago-rosso-mwgxc3sz.jpg",
+      "id": "drago-rosso"
+    },
+    {
       "title": "Alakazam",
       "year": "2016",
       "tecnica": "pastello",
