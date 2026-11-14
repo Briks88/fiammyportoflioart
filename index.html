@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiammetta Codari</title>
+  <meta name="description" content="Portfolio di Fiammetta Codari: illustrazioni fantasy, animali e natura. Olio su tela, acrilico, acquerello, pantoni e schizzi.">
+  <meta property="og:title" content="Fiammetta Codari — Portfolio">
+  <meta property="og:image" content="images/drago.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <header class="site-header" id="header"></header>
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow">Portfolio</p>
+      <h1 id="hero-title">Fiammetta Codari</h1>
+      <p class="tagline" id="hero-tagline"></p>
+    </section>
+
+    <div class="carousel" aria-label="Selezione di opere">
+      <button class="car-btn prev" aria-label="Opera precedente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="track" id="track"></div>
+      <button class="car-btn next" aria-label="Opera successiva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>
+      <div class="dots" id="dots"></div>
+    </div>
+
+    <section class="block wrap reveal" id="esplora">
+      <h2 class="sec-title">Esplora le opere</h2>
+      <hr class="rule">
+      <h3 class="sub-h" style="margin-top:0">Per tema</h3>
+      <div class="tiles" id="tiles-temi"></div>
+      <h3 class="sub-h">Per tecnica</h3>
+      <div class="tiles" id="tiles-tecniche"></div>
+      <p style="margin-top:28px"><a class="btn" href="opere.html">Vedi tutte le opere</a></p>
+    </section>
+
+    <section class="block wrap reveal" id="chi-sono">
+      <h2 class="sec-title">Chi sono</h2>
+      <hr class="rule">
+      <div class="about" id="bio"></div>
+    </section>
+
+    <section class="block wrap reveal" id="contatti">
+      <h2 class="sec-title">Contatti</h2>
+      <hr class="rule">
+      <p class="sec-sub">Commissioni, collaborazioni o semplici domande: scrivimi.</p>
+      <div class="contact-row" id="contact-row"></div>
+    </section>
+  </main>
+  <footer class="site-footer" id="footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "siteTitle": "Fiammetta Codari",
+  "tagline": "Illustrazioni, creature e bestiari dal taccuino alla tela",
+  "bio": "Sono Fiammetta Codari, artista e illustratrice. Disegno creature fantastiche, animali e paesaggi naturali, lavorando con olio su tela, acrilico, acquerello, pennarelli Pantone e schizzi a matita e penna.\n\nQuesto spazio raccoglie una selezione dei miei lavori: per commissioni o collaborazioni scrivimi pure.",
+  "instagram": "https://www.instagram.com/",
+  "email": "",
+  "temi": [
+    { "id": "fantasy", "label": "Fantasy" },
+    { "id": "natura", "label": "Natura" },
+    { "id": "animali", "label": "Animali" },
+    { "id": "ritratti", "label": "Ritratti" }
+  ],
+  "tecniche": [
+    { "id": "olio-su-tela", "label": "Olio su tela" },
+    { "id": "acrilico", "label": "Acrilico" },
+    { "id": "acquerello", "label": "Acquerello" },
+    { "id": "pantoni", "label": "Pantoni" },
+    { "id": "schizzo", "label": "Schizzo" }
+  ],
+  "github": { "owner": "Briks88", "repo": "fiammyportoflioart", "branch": "main" },
+  "pinHash": ""
+}
