@@ -122,19 +122,25 @@
   const lab = (list, id) => (list.find((x) => x.id === id) || {}).label || id;
   function imgSrc(p) { return pendingImages[p] ? "data:image/jpeg;base64," + pendingImages[p] : "../" + p; }
   function renderWorks() {
-    const el = $("#tab-works");
+    const el = $("#tab-works"), nHome = data.works.filter((w) => w.featured).length;
     el.innerHTML = `<div class="bar"><h2>Opere (${data.works.length})</h2><button class="btn solid" id="w-new">+ Nuova opera</button></div>
+      <p class="homebar ${nHome ? "" : "empty"}"><span class="star" aria-hidden="true">★</span><span>${nHome
+        ? `<b>${nHome}</b> ${nHome === 1 ? "opera nel" : "opere nel"} carosello della home. Tocca la stella di un'opera per aggiungerla o toglierla.`
+        : "Nessuna opera nel carosello: in home non verrà mostrato. Tocca la stella di un'opera per aggiungerla."}</span></p>
       <div class="wlist">${data.works.map((w) => `<div class="wrow" data-id="${esc(w.id)}">
         <img src="${esc(imgSrc(w.image))}" alt="">
-        <div><b>${esc(w.title)} ${w.featured ? '<span class="star" title="In galleria in home">★</span>' : ""}</b>
+        <div><b>${esc(w.title)}</b>
           <small>${esc(lab(cfg.tecniche, w.tecnica))}${fmtDate(w) ? " · " + esc(fmtDate(w)) : '<span class="tag warn">data mancante</span>'}</small><br>
           ${(w.temi || []).map((t) => `<span class="tag">${esc(lab(cfg.temi, t))}</span>`).join("")}</div>
-        <div class="acts"><button class="btn small" data-a="edit">Modifica</button><button class="btn small danger" data-a="del">Elimina</button></div><span class="chev" aria-hidden="true">›</span></div>`).join("") || '<p class="help">Nessuna opera. Aggiungine una!</p>'}</div>`;
+        <div class="side">
+          <button type="button" class="fav" data-a="feat" aria-pressed="${w.featured ? "true" : "false"}" aria-label="${w.featured ? "Togli «" + esc(w.title) + "» dal carosello della home" : "Metti «" + esc(w.title) + "» nel carosello della home"}" title="Carosello della home"><span class="fav-i" aria-hidden="true">${w.featured ? "★" : "☆"}</span><span class="fav-t">${w.featured ? "In home" : "Carosello"}</span></button>
+          <div class="acts"><button class="btn small" data-a="edit">Modifica</button><button class="btn small danger" data-a="del">Elimina</button></div><span class="chev" aria-hidden="true">›</span></div></div>`).join("") || '<p class="help">Nessuna opera. Aggiungine una!</p>'}</div>`;
     $("#w-new").onclick = () => workDialog();
     el.onclick = (e) => {
       const row = e.target.closest(".wrow"); if (!row) return;
       const w = data.works.find((x) => x.id === row.dataset.id), b = e.target.closest("button[data-a]");
-      if (b && b.dataset.a === "del") removeWork(w); else workDialog(w);
+      if (b && b.dataset.a === "feat") { w.featured = !w.featured; setDirty(); renderWorks(); toast(w.featured ? "Aggiunta al carosello della home." : "Tolta dal carosello della home."); }
+      else if (b && b.dataset.a === "del") removeWork(w); else workDialog(w);
     };
   }
   function removeWork(w) {
@@ -173,7 +179,7 @@
         <label class="f">Tecnica<select id="d-tec">${cfg.tecniche.map((t) => `<option value="${esc(t.id)}" ${t.id === cur.tecnica ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></label>
         <div class="f"><span class="fl">Temi</span><div class="checks">${cfg.temi.map((t) => `<label><input type="checkbox" value="${esc(t.id)}" ${(cur.temi || []).includes(t.id) ? "checked" : ""}>${esc(t.label)}</label>`).join("")}</div></div>
         <label class="f">Descrizione<textarea id="d-desc">${esc(cur.description)}</textarea></label>
-        <label class="switch"><input type="checkbox" id="d-feat" ${cur.featured ? "checked" : ""}> Mostra nella galleria in home</label>
+        <label class="switch"><input type="checkbox" id="d-feat" ${cur.featured ? "checked" : ""}> Mostra nel carosello della home</label>
       </div>
       <div class="dlg-foot">${isNew ? "" : '<button class="btn danger" type="button" id="d-del">Elimina</button><span class="sp"></span>'}<button class="btn" type="button" id="d-cancel">Annulla</button><button class="btn solid" type="submit" id="d-ok">Salva</button></div></form>`;
     d.showModal();

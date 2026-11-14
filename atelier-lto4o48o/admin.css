@@ -63,7 +63,7 @@ dialog::backdrop { background: rgba(24,19,16,.6); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .pubbar { display: flex; align-items: center; gap: 12px; }
 .tabs button { flex: 0 0 auto; }
-.wrow { cursor: pointer; grid-template-columns: 72px 1fr auto auto; }
+.wrow { cursor: pointer; grid-template-columns: 72px 1fr auto; }
 .wrow:hover { border-color: var(--ink-soft); }
 .wrow .chev { display: none; font-size: 1.6rem; color: var(--ink-soft); line-height: 1; }
 .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 8px; }
@@ -148,3 +148,15 @@ dialog[open] { display: flex; }
 .fl em { font-style: normal; opacity: .75; }
 .tag.warn { background: #f1d9d6; color: var(--accent); margin-left: 8px; }
 select:disabled { opacity: .5; }
+
+/* interruttore "carosello della home" */
+.side { display: flex; align-items: center; gap: 10px; }
+.fav { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; min-width: 44px; justify-content: center; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink-soft); font: inherit; font-size: .82rem; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+.fav:hover { border-color: var(--accent); color: var(--accent); }
+.fav-i { font-size: 1.25rem; line-height: 1; }
+.fav[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.fav[aria-pressed="true"]:hover { background: #7e231c; }
+.homebar { display: flex; gap: 8px; align-items: baseline; margin: -4px 0 16px; font-size: .9rem; color: var(--ink-soft); }
+.homebar .star { font-size: 1.1rem; }
+.homebar.empty { color: var(--accent); }
+@media (max-width: 720px) { .fav { padding: 0; width: 44px; border-radius: 50%; } .fav-t { display: none; } .side { gap: 4px; } }

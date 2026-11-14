@@ -83,8 +83,7 @@
     $("#hero-title").textContent = cfg.siteTitle;
     if (cfg.artist) $("#hero-artist").textContent = cfg.artist;
     $("#hero-tagline").textContent = cfg.tagline;
-    let feat = works.filter((w) => w.featured);
-    if (!feat.length) feat = works.slice(0, 8);
+    const feat = works.filter((w) => w.featured);
     const track = $("#track");
     if (!feat.length) { document.querySelector(".carousel").hidden = true; return homeSections(); }
     track.innerHTML = feat.map((w, i) => `<button class="slide" data-i="${i}" aria-label="Apri ${esc(w.title)}"><img src="${esc(w.image)}" alt="${esc(w.title)}" ${i > 1 ? 'loading="lazy"' : ""}><span class="cap">${esc(w.title)}</span></button>`).join("");
