@@ -50,6 +50,10 @@
     {
       "id": "schizzo-a-matita",
       "label": "Schizzo a matita"
+    },
+    {
+      "id": "tecnica-mista",
+      "label": "Tecnica mista"
     }
   ],
   "github": {
