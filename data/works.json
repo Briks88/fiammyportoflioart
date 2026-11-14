@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Drago leonino",
+      "year": "2018",
+      "tecnica": "schizzo",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/drago-leonino-mwgyblan.jpg",
+      "id": "drago-leonino"
+    },
+    {
       "title": "Bozza pesciolino",
       "year": "2026",
       "tecnica": "schizzo-a-matita",
