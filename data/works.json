@@ -1,9 +1,68 @@
 {
   "works": [
-    { "id": "drago", "title": "Drago in agguato", "year": "", "tecnica": "schizzo", "temi": ["fantasy"], "description": "Studio a matita di un drago dalla lunga criniera di fiamma.", "image": "images/drago.jpg", "featured": true },
-    { "id": "serpente-piumato", "title": "Serpente piumato", "year": "", "tecnica": "schizzo", "temi": ["fantasy", "animali"], "description": "Penna a sfera con tocco di rosso sulla piuma.", "image": "images/serpente-piumato.jpg", "featured": true },
-    { "id": "shere-khan", "title": "Shere Khan", "year": "", "tecnica": "schizzo", "temi": ["animali", "ritratti"], "description": "Studio del volto della tigre, a matita.", "image": "images/shere-khan.jpg", "featured": true },
-    { "id": "akela", "title": "Akela", "year": "", "tecnica": "schizzo", "temi": ["animali", "ritratti"], "description": "Ritratto di profilo del lupo Akela, a matita.", "image": "images/akela.jpg", "featured": true },
-    { "id": "polpi-studio", "title": "Studio di polpi", "year": "", "tecnica": "schizzo", "temi": ["natura", "animali"], "description": "Pagina di studi a penna sui cefalopodi.", "image": "images/polpi-studio.jpg", "featured": true }
+    {
+      "id": "drago",
+      "title": "Drago in agguato",
+      "year": "",
+      "tecnica": "schizzo",
+      "temi": [
+        "fantasy"
+      ],
+      "description": "Studio a matita di un drago dalla lunga criniera di fiamma.",
+      "image": "images/drago.jpg",
+      "featured": true
+    },
+    {
+      "id": "serpente-piumato",
+      "title": "Serpente piumato",
+      "year": "",
+      "tecnica": "schizzo",
+      "temi": [
+        "fantasy",
+        "animali"
+      ],
+      "description": "Penna a sfera con tocco di rosso sulla piuma.",
+      "image": "images/serpente-piumato.jpg",
+      "featured": true
+    },
+    {
+      "id": "shere-khan",
+      "title": "Shere Khan",
+      "year": "",
+      "tecnica": "schizzo",
+      "temi": [
+        "animali",
+        "ritratti"
+      ],
+      "description": "Studio del volto della tigre, a matita.",
+      "image": "images/shere-khan.jpg",
+      "featured": true
+    },
+    {
+      "id": "akela",
+      "title": "Akela",
+      "year": "",
+      "tecnica": "schizzo",
+      "temi": [
+        "animali",
+        "ritratti"
+      ],
+      "description": "Ritratto di profilo del lupo Akela, a matita.",
+      "image": "images/akela.jpg",
+      "featured": true
+    },
+    {
+      "id": "polpi-studio",
+      "title": "Studio di polpi",
+      "year": "",
+      "tecnica": "schizzo",
+      "temi": [
+        "natura",
+        "animali"
+      ],
+      "description": "Pagina di studi a penna sui cefalopodi.",
+      "image": "images/polpi-studio.jpg",
+      "featured": true
+    }
   ]
 }
