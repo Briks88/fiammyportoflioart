@@ -265,10 +265,11 @@
       <label class="f">Nome dell'artista<input data-k="artist" value="${esc(cfg.artist || "")}"></label>
       <label class="f">Frase sotto il titolo<input data-k="tagline" value="${esc(cfg.tagline)}"></label>
       <label class="f">Chi sono (una riga vuota separa i paragrafi)<textarea data-k="bio" style="min-height:200px">${esc(cfg.bio)}</textarea></label>
+      <label class="f">Velocità del carosello nella home (solo computer)<select data-k="carouselSpeed" data-num="1">${[[15, "Molto lenta"], [30, "Lenta"], [60, "Media"], [100, "Veloce"]].map(([v, l]) => `<option value="${v}" ${(Number(cfg.carouselSpeed) || 30) === v ? "selected" : ""}>${l}</option>`).join("")}</select></label>
       <label class="f">Link profilo Instagram<input data-k="instagram" value="${esc(cfg.instagram)}" placeholder="https://www.instagram.com/…"></label>
       <label class="f">Email per i contatti<input data-k="email" type="email" value="${esc(cfg.email)}"></label>
       <div class="panel"><h3>Cambia PIN</h3><div class="crow"><input id="newpin" type="password" inputmode="numeric" placeholder="Nuovo PIN (min. 4 cifre)"><button class="btn small" id="setpin">Imposta</button></div></div></div>`;
-    el.querySelectorAll("[data-k]").forEach((i) => (i.oninput = () => { cfg[i.dataset.k] = i.value; setDirty(); }));
+    el.querySelectorAll("[data-k]").forEach((i) => (i.oninput = () => { cfg[i.dataset.k] = i.dataset.num ? Number(i.value) : i.value; setDirty(); }));
     $("#setpin").onclick = async () => {
       const v = $("#newpin").value; if (v.length < 4) return toast("Il PIN deve avere almeno 4 caratteri.", true);
       cfg.pinHash = await pinHash(v); store.set("fc_pin_hash", cfg.pinHash); $("#newpin").value = ""; setDirty(); toast("PIN aggiornato: verrà salvato alla pubblicazione.");

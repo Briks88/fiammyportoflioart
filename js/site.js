@@ -79,41 +79,93 @@
   function closeLb() { lbEl.classList.remove("open"); document.body.style.overflow = ""; }
 
   /* ---------- Home ---------- */
+  const shuffle = (list) => { const a = list.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+
+  /* ---------- Carosello della home ----------
+     Computer: scorrimento continuo e lento (si ferma col mouse sopra; le frecce spostano di un'opera).
+     Telefono / "riduci movimento": scorrimento a scatti con swipe, come prima. */
+  function initCarousel(feat) {
+    const carousel = document.querySelector(".carousel"), track = $("#track"), dots = $("#dots");
+    const mq = matchMedia("(min-width: 721px) and (hover: hover) and (pointer: fine)"), reduce = matchMedia("(prefers-reduced-motion: reduce)");
+    const slide = (w, i, eager, clone) => `<button class="slide"${clone ? ' tabindex="-1" aria-hidden="true"' : ""} data-i="${i}" aria-label="Apri ${esc(w.title)}"><img src="${esc(w.image)}" alt="${clone ? "" : esc(w.title)}"${eager ? "" : ' loading="lazy"'} decoding="async" draggable="false"><span class="cap">${esc(w.title)}</span></button>`;
+    track.addEventListener("click", (e) => { const b = e.target.closest(".slide"); if (b) openLb(feat, +b.dataset.i); });
+
+    function marquee() {
+      const ac = new AbortController(), sig = { signal: ac.signal };
+      carousel.classList.add("is-marquee");
+      track.scrollLeft = 0; dots.innerHTML = "";
+      track.innerHTML = '<div class="rail">' + feat.map((w, i) => slide(w, i, true, false)).join("") + "</div>";
+      const rail = track.firstElementChild, n = feat.length, first = rail.children[0];
+      const addSet = () => { rail.insertAdjacentHTML("beforeend", feat.map((w, i) => slide(w, i, true, true)).join("")); sets++; };
+      let sets = 1; addSet();
+      const speed = Math.max(5, Number(cfg.carouselSpeed) || 30); // pixel al secondo
+      let x = 0, paused = false, tween = null, last = 0, raf = 0, visible = true;
+      const setW = () => (rail.children[n] ? rail.children[n].offsetLeft - first.offsetLeft : 0); // larghezza di un giro completo
+      const frame = (t) => {
+        raf = requestAnimationFrame(frame);
+        const dt = Math.min(0.1, (t - (last || t)) / 1000); last = t;
+        const w = setW(); if (!w) return;
+        if ((sets - 1) * w < track.clientWidth + 40 && sets < 8) addSet();
+        if (tween) {
+          const k = Math.min(1, (t - tween.t0) / tween.d), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+          x = tween.from + (tween.to - tween.from) * e; if (k >= 1) tween = null;
+        } else if (!paused && visible && !document.hidden) x += speed * dt;
+        x = ((x % w) + w) % w;
+        rail.style.transform = `translate3d(${-x}px,0,0)`;
+      };
+      const nudge = (dir) => { const w = setW(); if (!w) return; const step = Math.min(w / n, track.clientWidth * 0.6); tween = { from: x, to: x + dir * step, t0: performance.now(), d: 650 }; };
+      $(".car-btn.prev").onclick = () => nudge(-1);
+      $(".car-btn.next").onclick = () => nudge(1);
+      ["mouseenter", "focusin"].forEach((ev) => carousel.addEventListener(ev, () => (paused = true), sig));
+      ["mouseleave", "focusout"].forEach((ev) => carousel.addEventListener(ev, () => (paused = false), sig));
+      const io = new IntersectionObserver((es) => { visible = es[0].isIntersecting; }); io.observe(carousel);
+      raf = requestAnimationFrame(frame);
+      return () => { cancelAnimationFrame(raf); ac.abort(); io.disconnect(); carousel.classList.remove("is-marquee"); track.innerHTML = ""; };
+    }
+
+    function snap() {
+      const ac = new AbortController(), sig = { signal: ac.signal };
+      track.scrollLeft = 0;
+      track.innerHTML = feat.map((w, i) => slide(w, i, i <= 1, false)).join("");
+      const slides = [...track.children];
+      dots.innerHTML = slides.map((_, i) => `<button aria-label="Vai all'opera ${i + 1}"></button>`).join("");
+      let cur = 0, timer, paused = false;
+      const goTo = (i) => {
+        cur = (i + slides.length) % slides.length;
+        const s = slides[cur];
+        track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: "smooth" });
+      };
+      const mark = () => [...dots.children].forEach((d, i) => d.setAttribute("aria-current", i === cur));
+      track.addEventListener("scroll", () => {
+        const mid = track.scrollLeft + track.clientWidth / 2;
+        let best = 0, bd = 1e9;
+        slides.forEach((s, i) => { const d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
+        if (best !== cur) cur = best; mark();
+      }, { passive: true, ...sig });
+      dots.onclick = (e) => { const i = [...dots.children].indexOf(e.target.closest("button")); if (i >= 0) goTo(i); };
+      $(".car-btn.prev").onclick = () => goTo(cur - 1);
+      $(".car-btn.next").onclick = () => goTo(cur + 1);
+      timer = setInterval(() => { if (!reduce.matches && !paused && document.visibilityState === "visible") goTo(cur + 1); }, 4200);
+      ["mouseenter", "touchstart", "focusin"].forEach((ev) => track.addEventListener(ev, () => (paused = true), { passive: true, ...sig }));
+      ["mouseleave", "touchend", "focusout"].forEach((ev) => track.addEventListener(ev, () => setTimeout(() => (paused = false), 1500), { passive: true, ...sig }));
+      mark();
+      return () => { clearInterval(timer); ac.abort(); track.innerHTML = ""; };
+    }
+
+    let stop = () => {};
+    const setup = () => { stop(); stop = mq.matches && !reduce.matches && feat.length > 1 ? marquee() : snap(); };
+    mq.addEventListener("change", setup); reduce.addEventListener("change", setup);
+    setup();
+  }
+
   function home() {
     $("#hero-title").textContent = cfg.siteTitle;
     if (cfg.artist) $("#hero-artist").textContent = cfg.artist;
     $("#hero-tagline").textContent = cfg.tagline;
-    const feat = works.filter((w) => w.featured);
-    const track = $("#track");
+    // le opere scelte nel pannello compaiono in ordine casuale a ogni caricamento della pagina
+    const feat = shuffle(works.filter((w) => w.featured));
     if (!feat.length) { document.querySelector(".carousel").hidden = true; return homeSections(); }
-    track.innerHTML = feat.map((w, i) => `<button class="slide" data-i="${i}" aria-label="Apri ${esc(w.title)}"><img src="${esc(w.image)}" alt="${esc(w.title)}" ${i > 1 ? 'loading="lazy"' : ""}><span class="cap">${esc(w.title)}</span></button>`).join("");
-    track.addEventListener("click", (e) => { const b = e.target.closest(".slide"); if (b) openLb(feat, +b.dataset.i); });
-    const slides = [...track.children];
-    const dots = $("#dots");
-    dots.innerHTML = slides.map((_, i) => `<button aria-label="Vai all'opera ${i + 1}"></button>`).join("");
-    let cur = 0, timer, paused = false;
-    const goTo = (i) => {
-      cur = (i + slides.length) % slides.length;
-      const s = slides[cur];
-      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: "smooth" });
-    };
-    const mark = () => [...dots.children].forEach((d, i) => d.setAttribute("aria-current", i === cur));
-    track.addEventListener("scroll", () => {
-      const mid = track.scrollLeft + track.clientWidth / 2;
-      let best = 0, bd = 1e9;
-      slides.forEach((s, i) => { const d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid); if (d < bd) { bd = d; best = i; } });
-      if (best !== cur) { cur = best; } mark();
-    }, { passive: true });
-    dots.onclick = (e) => { const i = [...dots.children].indexOf(e.target.closest("button")); if (i >= 0) goTo(i); };
-    $(".car-btn.prev").onclick = () => goTo(cur - 1);
-    $(".car-btn.next").onclick = () => goTo(cur + 1);
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const start = () => { clearInterval(timer); if (!reduce) timer = setInterval(() => { if (!paused && document.visibilityState === "visible") goTo(cur + 1); }, 4200); };
-    ["mouseenter", "touchstart", "focusin"].forEach((ev) => track.addEventListener(ev, () => (paused = true), { passive: true }));
-    ["mouseleave", "touchend", "focusout"].forEach((ev) => track.addEventListener(ev, () => setTimeout(() => (paused = false), 1500), { passive: true }));
-    mark(); start();
-    window.addEventListener("load", () => setTimeout(() => goTo(0), 50));
-
+    initCarousel(feat);
     homeSections();
   }
 

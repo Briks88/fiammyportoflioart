@@ -24,5 +24,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=instagram&utm_medium=social&utm_campaign=bio",
+      "permanent": false
+    }
   ]
 }
