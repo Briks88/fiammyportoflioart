@@ -54,6 +54,10 @@
     {
       "id": "tecnica-mista",
       "label": "Tecnica mista"
+    },
+    {
+      "id": "pastello",
+      "label": "Pastello"
     }
   ],
   "github": {
