@@ -24,6 +24,10 @@
     {
       "id": "altro",
       "label": "Altro"
+    },
+    {
+      "id": "fanart",
+      "label": "Fanart"
     }
   ],
   "tecniche": [
