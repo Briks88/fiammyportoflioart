@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Città nebbiosa",
+      "year": "2026",
+      "tecnica": "acquerello",
+      "temi": [
+        "altro"
+      ],
+      "description": "",
+      "featured": true,
+      "image": "images/citta-nebbiosa-mwgvwu4k.jpg",
+      "id": "citta-nebbiosa"
+    },
+    {
       "title": "Chimera",
       "year": "2015",
       "tecnica": "pastello",
