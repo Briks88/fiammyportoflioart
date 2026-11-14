@@ -1,6 +1,18 @@
 {
   "works": [
     {
+      "title": "Drago verde",
+      "year": "2019",
+      "tecnica": "pantoni",
+      "temi": [
+        "fanart"
+      ],
+      "description": "Preso ispirazione dai personaggi del videogame \"Dragonvale\"",
+      "featured": true,
+      "image": "images/drago-verde-mwgxk5ez.jpg",
+      "id": "drago-verde"
+    },
+    {
       "title": "Drago rosso fuoco",
       "year": "2019",
       "tecnica": "pantoni",
@@ -9,7 +21,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi del videogame \"Dragonvale\"",
-      "featured": true,
+      "featured": false,
       "image": "images/drago-rosso-mwgxc3sz.jpg",
       "id": "drago-rosso"
     },
@@ -21,7 +33,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga \"Pokèmon\"",
-      "featured": true,
+      "featured": false,
       "image": "images/alakazam-mwgx5j7b.jpg",
       "id": "alakazam"
     },
