@@ -208,7 +208,16 @@
     let shown = [];
     function render() {
       shown = works.filter((w) => (!state.tema || (w.temi || []).includes(state.tema)) && (!state.tecnica || w.tecnica === state.tecnica));
-      document.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", (state[c.dataset.k] || "") === c.dataset.v));
+      const match = (w, tema, tec) => (!tema || (w.temi || []).includes(tema)) && (!tec || w.tecnica === tec);
+      document.querySelectorAll(".chip").forEach((c) => {
+        const k = c.dataset.k, v = c.dataset.v, on = (state[k] || "") === v;
+        c.setAttribute("aria-pressed", on);
+        // una categoria che, insieme alla scelta fatta nell'altro gruppo, non dà nessuna opera diventa non cliccabile
+        let none = false;
+        if (v && !on) none = !works.some((w) => (k === "tecnica" ? match(w, state.tema, v) : match(w, v, state.tecnica)));
+        c.disabled = none;
+        c.title = none ? "Nessuna opera con questa combinazione" : "";
+      });
       $("#count").textContent = shown.length === 1 ? "1 opera" : shown.length + " opere";
       $("#grid").innerHTML = shown.length ? shown.map((w, i) => `<button class="card" data-i="${i}" aria-label="Apri ${esc(w.title)}"><div class="img"><img src="${esc(w.image)}" alt="${esc(w.title)}" loading="lazy"></div><div class="meta"><b>${esc(w.title)}</b><span>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? " · " + esc(w.year) : ""}</span></div></button>`).join("") : `<p class="empty">${works.length ? "Nessuna opera in questa combinazione di filtri." : "Le prime opere arriveranno presto."}</p>`;
       const q = new URLSearchParams(); if (state.tema) q.set("tema", state.tema); if (state.tecnica) q.set("tecnica", state.tecnica);

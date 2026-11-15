@@ -217,3 +217,7 @@ section.block { padding-top: clamp(44px, 7vw, 92px); }
 .prose .upd { color: var(--ink-soft); font-size: .9rem; }
 .tiles[hidden], .sub-h[hidden], #esplora [hidden] { display: none; }
 .filters[hidden], .filter-group[hidden] { display: none; }
+
+/* filtri che con la scelta fatta nell'altro gruppo non darebbero nessuna opera */
+.chip:disabled { opacity: .35; cursor: not-allowed; }
+.chip:disabled:hover { border-color: var(--line); }
