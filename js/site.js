@@ -20,23 +20,23 @@
   async function load() {
     const bust = "?v=" + Math.floor(Date.now() / 60000);
     const [c, w] = await Promise.all([
-      fetch("data/config.json" + bust).then((r) => r.json()),
-      fetch("data/works.json" + bust).then((r) => r.json()),
+      fetch("/data/config.json" + bust).then((r) => r.json()),
+      fetch("/data/works.json" + bust).then((r) => r.json()),
     ]);
     cfg = c; works = w.works || [];
   }
 
   function chrome(page) {
-    document.title = page === "opere" ? "Opere — " + cfg.siteTitle : cfg.siteTitle + (cfg.artist ? " — " + cfg.artist : "");
+    if (page === "home" || page === "opere") document.title = page === "opere" ? "Opere — " + cfg.siteTitle : cfg.siteTitle + (cfg.artist ? " — " + cfg.artist : "");
     const home = page === "home";
-    const link = (hash, txt) => `<a href="${home ? "" : "index.html"}#${hash}">${txt}</a>`;
+    const link = (hash, txt) => `<a href="${home ? "" : "/"}#${hash}">${txt}</a>`;
     $("#header").innerHTML = `
       <div class="wrap">
-        <a class="brand" href="index.html"><img src="images/logo.svg" alt="" width="34" height="34"><span>${esc(cfg.siteTitle)}</span></a>
+        <a class="brand" href="/"><img src="/images/logo.svg" alt="" width="34" height="34"><span>${esc(cfg.siteTitle)}</span></a>
         <button class="menu-btn" aria-label="Menu" aria-expanded="false">${ICON.menu}</button>
         <nav class="nav" aria-label="Principale">
-          <a href="index.html" ${home ? 'aria-current="page"' : ""}>Home</a>
-          <a href="opere.html" ${page === "opere" ? 'aria-current="page"' : ""}>Opere</a>
+          <a href="/" ${home ? 'aria-current="page"' : ""}>Home</a>
+          <a href="/opere.html" ${page === "opere" ? 'aria-current="page"' : ""}>Opere</a>
           ${link("chi-sono", "Chi sono")}
           ${link("contatti", "Contatti")}
         </nav>
@@ -44,7 +44,7 @@
     const btn = $(".menu-btn"), nav = $(".nav");
     btn.onclick = () => { const o = nav.classList.toggle("open"); btn.setAttribute("aria-expanded", o); };
     nav.addEventListener("click", (e) => { if (e.target.closest("a")) nav.classList.remove("open"); });
-    $("#footer").innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} ${esc(cfg.artist || cfg.siteTitle)}. Tutti i diritti riservati.</span><span>Le opere non possono essere riprodotte senza autorizzazione. Questo sito raccoglie statistiche di visita anonime.</span></div>`;
+    $("#footer").innerHTML = `<div class="wrap"><span>© ${new Date().getFullYear()} ${esc(cfg.artist || cfg.siteTitle)}. Tutti i diritti riservati.</span><span>Le opere non possono essere riprodotte senza autorizzazione. Questo sito raccoglie statistiche di visita anonime: <a href="/privacy.html">informativa privacy</a>.</span></div>`;
   }
 
   /* ---------- Lightbox ---------- */
@@ -72,7 +72,7 @@
   function showLb() {
     const w = lbList[lbIdx];
     const img = $("img", lbEl); img.src = w.image; img.alt = w.title;
-    $(".lb-cap", lbEl).innerHTML = `<b>${esc(w.title)}</b><small>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? ` · <time datetime="${esc(isoDate(w))}">${esc(fmtDate(w))}</time>` : ""}</small>${w.description ? `<p>${esc(w.description)}</p>` : ""}`;
+    $(".lb-cap", lbEl).innerHTML = `<b>${esc(w.title)}</b><small>${esc(label(cfg.tecniche, w.tecnica))}${w.year ? ` · <time datetime="${esc(isoDate(w))}">${esc(fmtDate(w))}</time>` : ""}</small>${w.description ? `<p>${esc(w.description)}</p>` : ""}${w.id ? `<a class="lb-link" href="/opera/${esc(w.id)}/">Pagina dell'opera</a>` : ""}`;
   }
   function openLb(list, i) { ensureLb(); lbList = list; lbIdx = i; showLb(); lbEl.classList.add("open"); document.body.style.overflow = "hidden"; $(".x", lbEl).focus(); }
   function stepLb(d) { lbIdx = (lbIdx + d + lbList.length) % lbList.length; showLb(); }
@@ -219,6 +219,6 @@
   }
 
   const page = document.body.dataset.page;
-  load().then(() => { chrome(page); page === "home" ? home() : opere(); reveal(); })
+  load().then(() => { chrome(page); if (page === "home") home(); else if (page === "opere") opere(); reveal(); })
     .catch((err) => { console.error(err); document.body.insertAdjacentHTML("afterbegin", '<p style="padding:24px">Impossibile caricare i contenuti. Se apri il file direttamente dal computer, usa un server locale.</p>'); });
 })();
