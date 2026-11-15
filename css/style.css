@@ -215,3 +215,4 @@ section.block { padding-top: clamp(44px, 7vw, 92px); }
 .prose h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem; margin: 30px 0 6px; }
 .prose p, .prose li { font-size: 1rem; }
 .prose .upd { color: var(--ink-soft); font-size: .9rem; }
+.tiles[hidden], .sub-h[hidden], #esplora [hidden] { display: none; }

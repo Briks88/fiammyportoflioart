@@ -171,9 +171,18 @@
 
   function homeSections() {
     const count = (key, id) => works.filter((w) => (key === "temi" ? (w.temi || []).includes(id) : w.tecnica === id)).length;
-    const tiles = (list, key, param) => list.map((c) => `<a class="tile" href="opere.html?${param}=${encodeURIComponent(c.id)}"><span class="t-name">${esc(c.label)}</span><span class="t-count">${count(key, c.id) === 1 ? "1 opera" : count(key, c.id) + " opere"}</span></a>`).join("");
-    $("#tiles-temi").innerHTML = tiles(cfg.temi, "temi", "tema");
-    $("#tiles-tecniche").innerHTML = tiles(cfg.tecniche, "tecnica", "tecnica");
+    // si mostrano solo le categorie che hanno almeno un'opera; un gruppo senza categorie sparisce con il suo titolo
+    const tiles = (list, key, param) => list.filter((c) => count(key, c.id) > 0).map((c) => `<a class="tile" href="opere.html?${param}=${encodeURIComponent(c.id)}"><span class="t-name">${esc(c.label)}</span><span class="t-count">${count(key, c.id) === 1 ? "1 opera" : count(key, c.id) + " opere"}</span></a>`).join("");
+    const fill = (id, list, key, param) => {
+      const el = $(id), html = tiles(list, key, param);
+      el.innerHTML = html;
+      el.hidden = !html;
+      if (el.previousElementSibling && el.previousElementSibling.tagName === "H3") el.previousElementSibling.hidden = !html;
+      return !!html;
+    };
+    const anyTema = fill("#tiles-temi", cfg.temi, "temi", "tema"), anyTec = fill("#tiles-tecniche", cfg.tecniche, "tecnica", "tecnica");
+    // senza nessuna categoria con opere, resta solo il pulsante "Vedi tutte le opere"
+    if (!anyTema && !anyTec) { const t = document.querySelector("#esplora .sec-title"), r = document.querySelector("#esplora .rule"); if (t) t.hidden = true; if (r) r.hidden = true; }
 
     $("#bio").innerHTML = String(cfg.bio || "").split(/\n{2,}/).map((p) => `<p>${esc(p).replace(/\n/g, "<br>")}</p>`).join("");
     const ct = [];
