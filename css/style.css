@@ -171,3 +171,9 @@ section.block { padding-top: clamp(44px, 7vw, 92px); }
 .carousel.is-marquee .dots { display: none; }
 .rail { display: flex; gap: 14px; width: max-content; will-change: transform; }
 .carousel.is-marquee .slide { scroll-snap-align: none; }
+
+/* carosello a scatti (telefono e tablet): ogni opera sta per intero nello schermo, senza tagli.
+   Le orizzontali si riducono in altezza per restare dentro la larghezza; le verticali restano com'erano. */
+.carousel:not(.is-marquee) .track { align-items: center; }
+.carousel:not(.is-marquee) .slide { height: auto; }
+.carousel:not(.is-marquee) .slide img { display: block; height: auto; width: auto; max-width: calc(100vw - 2 * var(--gutter)); max-height: clamp(260px, 52vh, 420px); }
