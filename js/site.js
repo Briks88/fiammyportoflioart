@@ -194,10 +194,17 @@
   /* ---------- Opere ---------- */
   function opere() {
     const params = new URLSearchParams(location.search);
-    const state = { tema: params.get("tema") || "", tecnica: params.get("tecnica") || "" };
+    // si mostrano solo le categorie che hanno almeno un'opera
+    const temiOk = cfg.temi.filter((c) => works.some((w) => (w.temi || []).includes(c.id)));
+    const tecOk = cfg.tecniche.filter((c) => works.some((w) => w.tecnica === c.id));
+    // un indirizzo che punta a una categoria vuota o inesistente mostra semplicemente tutte le opere
+    const state = { tema: temiOk.some((c) => c.id === params.get("tema")) ? params.get("tema") : "", tecnica: tecOk.some((c) => c.id === params.get("tecnica")) ? params.get("tecnica") : "" };
     const chips = (list, key) => `<button class="chip" data-k="${key}" data-v="" aria-pressed="false">Tutti</button>` + list.map((c) => `<button class="chip" data-k="${key}" data-v="${esc(c.id)}" aria-pressed="false">${esc(c.label)}</button>`).join("");
-    $("#f-temi").innerHTML = `<span class="lbl">Tema</span>` + chips(cfg.temi, "tema");
-    $("#f-tecniche").innerHTML = `<span class="lbl">Tecnica</span>` + chips(cfg.tecniche, "tecnica");
+    $("#f-temi").innerHTML = `<span class="lbl">Tema</span>` + chips(temiOk, "tema");
+    $("#f-tecniche").innerHTML = `<span class="lbl">Tecnica</span>` + chips(tecOk, "tecnica");
+    // un gruppo senza categorie sparisce del tutto
+    $("#f-temi").hidden = !temiOk.length; $("#f-tecniche").hidden = !tecOk.length;
+    if (!temiOk.length && !tecOk.length) document.querySelector(".filters").hidden = true;
     let shown = [];
     function render() {
       shown = works.filter((w) => (!state.tema || (w.temi || []).includes(state.tema)) && (!state.tecnica || w.tecnica === state.tecnica));

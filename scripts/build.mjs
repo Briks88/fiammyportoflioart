@@ -49,7 +49,7 @@ const works = (JSON.parse(read("data/works.json")).works || []).filter((w) => w 
 const SITE = (cfg.siteUrl || "https://mondodinchiostromatitoso.it").replace(/\/$/, "");
 const TITLE = cfg.siteTitle || "Portfolio", ARTIST = cfg.artist || "";
 const abs = (p) => SITE + "/" + String(p).replace(/^\//, "");
-const css = "/css/style.css?v=6", js = "/js/site.js?v=11";
+const css = "/css/style.css?v=7", js = "/js/site.js?v=12";
 
 // ---- 3) una pagina per opera
 function workPage(w, i) {

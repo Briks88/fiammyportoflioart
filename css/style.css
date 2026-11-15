@@ -216,3 +216,4 @@ section.block { padding-top: clamp(44px, 7vw, 92px); }
 .prose p, .prose li { font-size: 1rem; }
 .prose .upd { color: var(--ink-soft); font-size: .9rem; }
 .tiles[hidden], .sub-h[hidden], #esplora [hidden] { display: none; }
+.filters[hidden], .filter-group[hidden] { display: none; }
