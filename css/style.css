@@ -7,7 +7,7 @@
   --accent: #9a2f27;
   --line: #d6ccb8;
   --radius: 6px;
-  --serif: "Cormorant Garamond", "Georgia", serif;
+  --serif: "Amatic SC", "Cormorant Garamond", "Georgia", serif;
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --gutter: clamp(16px, 4vw, 48px);
 }
@@ -221,3 +221,8 @@ section.block { padding-top: clamp(44px, 7vw, 92px); }
 /* filtri che con la scelta fatta nell'altro gruppo non darebbero nessuna opera */
 .chip:disabled { opacity: .35; cursor: not-allowed; }
 .chip:disabled:hover { border-color: var(--line); }
+
+/* anteprima: Amatic SC per titoli e nomi (corpo del testo invariato) */
+.brand, .hero h1, .sec-title, .tile .t-name, .work-info h1, .prose h1, .prose h2, .work-nav span, .lb .lb-cap b, .card .meta b, .hero p.tagline { font-weight: 700; letter-spacing: .02em; }
+.hero p.tagline { font-style: normal; }
+.hero h1 { line-height: 1.12; } .work-info h1 { line-height: 1.05; }

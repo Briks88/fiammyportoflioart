@@ -49,7 +49,7 @@ const works = (JSON.parse(read("data/works.json")).works || []).filter((w) => w 
 const SITE = (cfg.siteUrl || "https://mondodinchiostromatitoso.it").replace(/\/$/, "");
 const TITLE = cfg.siteTitle || "Portfolio", ARTIST = cfg.artist || "";
 const abs = (p) => SITE + "/" + String(p).replace(/^\//, "");
-const css = "/css/style.css?v=8", js = "/js/site.js?v=13";
+const css = "/css/style.css?v=10", js = "/js/site.js?v=13";
 
 // ---- 3) una pagina per opera
 function workPage(w, i) {
@@ -91,9 +91,9 @@ function workPage(w, i) {
   <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
   <link rel="apple-touch-icon" href="/images/logo-180.png">
-  <link rel="preload" href="/fonts/cormorant-garamond-normal-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/amatic-sc-normal-700-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter-normal-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/fonts.css?v=1">
+  <link rel="stylesheet" href="/css/fonts.css?v=2">
   <link rel="stylesheet" href="${css}">
 </head>
 <body data-page="opera">
