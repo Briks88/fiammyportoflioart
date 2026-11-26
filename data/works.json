@@ -133,7 +133,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi del videogame \"Dragonvale\"",
-      "featured": false,
+      "featured": true,
       "image": "images/drago-rosso-mwgxc3sz.jpg",
       "id": "drago-rosso"
     },
@@ -235,7 +235,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": false,
+      "featured": true,
       "image": "images/augurey-mwgwm8nk.jpg",
       "id": "augurey"
     },
@@ -385,7 +385,7 @@
         "natura"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/autunno-mwgvpos8.jpg",
       "id": "autunno"
     },
@@ -397,7 +397,7 @@
         "natura"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/inverno-mwgvp1h0.jpg",
       "id": "inverno"
     },
@@ -409,7 +409,7 @@
         "ritratti"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/mezzo-volto-a-pastelli-mwgvm8ry.jpg",
       "id": "mezzo-volto-a-pastelli"
     },
@@ -433,7 +433,7 @@
         "animali"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/pesce-combattente-rosso-mwgvcgvn.jpg",
       "id": "pesce-combattente-rosso"
     },
@@ -445,7 +445,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/ippocampo-mwgv939g.jpg",
       "id": "ippocampo"
     },
@@ -457,7 +457,7 @@
         "altro"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/open-your-mind-mwgv4ddc.jpg",
       "id": "open-your-mind"
     }
