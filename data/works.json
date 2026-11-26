@@ -1,6 +1,21 @@
 {
   "works": [
     {
+      "title": "Barbagianni in volo",
+      "year": "2017",
+      "tecnica": "acrilico",
+      "temi": [
+        "natura",
+        "animali"
+      ],
+      "description": "Una mia interpretazione pittorica di una fotografia che ritrae un bellissimo Barbagianni in volo.",
+      "featured": true,
+      "image": "images/barbagianni-in-volo-mwy20xwz.jpg",
+      "month": 5,
+      "day": 30,
+      "id": "barbagianni-in-volo"
+    },
+    {
       "title": "Estate",
       "year": "2026",
       "tecnica": "acquerello",
