@@ -54,6 +54,7 @@ const css = "/css/style.css?v=10", js = "/js/site.js?v=13";
 // ---- 3) una pagina per opera
 function workPage(w, i) {
   const tec = label(cfg.tecniche || [], w.tecnica), date = fmtDate(w), iso = isoDate(w);
+  const size = /^([1-9]\d{0,2})x([1-9]\d{0,2})$/.exec(String(w.dimensioni || "").replace(/\s+/g, ""));
   const temi = (w.temi || []).map((t) => ({ id: t, label: label(cfg.temi || [], t) }));
   const url = `${SITE}/opera/${w.id}/`, sz = imgSize(w.image);
   const desc = w.description ? trunc(w.description.replace(/\s+/g, " "), 158) : trunc(`${w.title}: ${tec.toLowerCase()}${date ? " del " + date : ""} di ${ARTIST || TITLE}${temi.length ? ". " + temi.map((t) => t.label).join(", ") : ""}.`, 158);
@@ -104,7 +105,7 @@ function workPage(w, i) {
       <figure class="work-fig"><img src="/${esc(w.image)}" alt="${esc(w.title)} — ${esc(tec.toLowerCase())}${ARTIST ? " di " + esc(ARTIST) : ""}"${sz ? ` width="${sz.w}" height="${sz.h}"` : ""} fetchpriority="high"></figure>
       <div class="work-info">
         <h1>${esc(w.title)}</h1>
-        <p class="work-meta">${esc(tec)}${date ? ` · <time datetime="${esc(iso)}">${esc(date)}</time>` : ""}</p>
+        <p class="work-meta">${esc(tec)}${date ? ` · <time datetime="${esc(iso)}">${esc(date)}</time>` : ""}${size ? ` · <span class="work-size">${size[1]} × ${size[2]} cm</span>` : ""}</p>
         ${w.description ? `<p class="work-desc">${esc(w.description).replace(/\n+/g, "<br>")}</p>` : ""}
         ${temi.length ? `<p class="work-tags">${temi.map((t) => `<a href="/opere.html?tema=${encodeURIComponent(t.id)}">${esc(t.label)}</a>`).join("")}<a href="/opere.html?tecnica=${encodeURIComponent(w.tecnica)}">${esc(tec)}</a></p>` : ""}
       </div>

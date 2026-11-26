@@ -160,3 +160,8 @@ select:disabled { opacity: .5; }
 .homebar .star { font-size: 1.1rem; }
 .homebar.empty { color: var(--accent); }
 @media (max-width: 720px) { .fav { padding: 0; width: 44px; border-radius: 50%; } .fav-t { display: none; } .side { gap: 4px; } }
+
+/* dimensioni dell'opera: due misure intere in centimetri */
+.size2 { display: flex; align-items: center; gap: 10px; }
+.size2 input { width: 92px; text-align: center; }
+.size2 span { color: var(--ink-soft); }

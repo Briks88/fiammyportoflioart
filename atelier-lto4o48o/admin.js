@@ -159,7 +159,7 @@
       <div class="wlist">${data.works.map((w) => `<div class="wrow" data-id="${esc(w.id)}">
         <img src="${esc(imgSrc(w.image))}" alt="">
         <div><b>${esc(w.title)}</b>
-          <small>${esc(lab(cfg.tecniche, w.tecnica))}${fmtDate(w) ? " · " + esc(fmtDate(w)) : '<span class="tag warn">data mancante</span>'}</small><br>
+          <small>${esc(lab(cfg.tecniche, w.tecnica))}${fmtDate(w) ? " · " + esc(fmtDate(w)) : '<span class="tag warn">data mancante</span>'}${w.dimensioni ? " · " + esc(String(w.dimensioni).replace("x", " × ")) + " cm" : ""}</small><br>
           ${(w.temi || []).map((t) => `<span class="tag">${esc(lab(cfg.temi, t))}</span>`).join("")}</div>
         <div class="side">
           <button type="button" class="fav" data-a="feat" aria-pressed="${w.featured ? "true" : "false"}" aria-label="${w.featured ? "Togli «" + esc(w.title) + "» dal carosello della home" : "Metti «" + esc(w.title) + "» nel carosello della home"}" title="Carosello della home"><span class="fav-i" aria-hidden="true">${w.featured ? "★" : "☆"}</span><span class="fav-t">${w.featured ? "In home" : "Carosello"}</span></button>
@@ -206,6 +206,13 @@
             <label class="f sub">Giorno<select id="d-day"></select></label>
           </div></div>
         <label class="f">Tecnica<select id="d-tec">${cfg.tecniche.map((t) => `<option value="${esc(t.id)}" ${t.id === cur.tecnica ? "selected" : ""}>${esc(t.label)}</option>`).join("")}</select></label>
+        <div class="f"><span class="fl">Dimensioni in cm <em>(facoltativo)</em></span>
+          <div class="size2">
+            <input id="d-sw" value="${esc(String(cur.dimensioni || "").split("x")[0] || "")}" inputmode="numeric" pattern="[1-9][0-9]{0,2}" maxlength="3" placeholder="40" aria-label="Prima misura in centimetri" autocomplete="off">
+            <span aria-hidden="true">×</span>
+            <input id="d-sh" value="${esc(String(cur.dimensioni || "").split("x")[1] || "")}" inputmode="numeric" pattern="[1-9][0-9]{0,2}" maxlength="3" placeholder="80" aria-label="Seconda misura in centimetri" autocomplete="off">
+            <span>cm</span>
+          </div></div>
         <div class="f"><span class="fl">Temi</span><div class="checks">${cfg.temi.map((t) => `<label><input type="checkbox" value="${esc(t.id)}" ${(cur.temi || []).includes(t.id) ? "checked" : ""}>${esc(t.label)}</label>`).join("")}</div></div>
         <label class="f">Descrizione<textarea id="d-desc">${esc(cur.description)}</textarea></label>
         <label class="switch"><input type="checkbox" id="d-feat" ${cur.featured ? "checked" : ""}> Mostra nel carosello della home</label>
@@ -221,6 +228,7 @@
     };
     fillDays(+cur.day);
     $("#d-month").onchange = () => fillDays(+$("#d-day").value);
+    ["#d-sw", "#d-sh"].forEach((id) => ($(id).oninput = () => { $("#d-sw").setCustomValidity(""); $("#d-sh").setCustomValidity(""); }));
     $("#d-year").oninput = () => { $("#d-year").setCustomValidity(""); fillDays(+$("#d-day").value); };
     $("#d-cancel").onclick = () => d.close(); $("#d-x").onclick = () => d.close();
     if (!isNew) $("#d-del").onclick = () => { if (removeWork(cur)) d.close(); };
@@ -235,6 +243,12 @@
     };
     $("#d-ok").onclick = (e) => {
       const title = $("#d-title").value.trim();
+      const sw = $("#d-sw"), sh = $("#d-sh"), swv = sw.value.trim(), shv = sh.value.trim(), okN = (v) => /^[1-9]\d{0,2}$/.test(v);
+      sw.setCustomValidity(""); sh.setCustomValidity("");
+      if (swv || shv) {
+        if (!swv || !okN(swv)) sw.setCustomValidity("Inserisci un numero intero di centimetri (senza decimali), oppure lascia vuoto.");
+        else if (!shv || !okN(shv)) sh.setCustomValidity("Inserisci un numero intero di centimetri (senza decimali), oppure lascia vuoto.");
+      }
       const yr = $("#d-year"), yv = yr.value.trim(), thisYear = new Date().getFullYear();
       yr.setCustomValidity(/^\d{4}$/.test(yv) && +yv >= 1900 && +yv <= thisYear + 1 ? "" : `Inserisci un anno di 4 cifre tra 1900 e ${thisYear + 1} (es. ${thisYear}).`);
       if (!d.querySelector("form").reportValidity()) { e.preventDefault(); return; }
@@ -242,6 +256,7 @@
       e.preventDefault();
       const rec = cur;
       rec.title = title; rec.year = $("#d-year").value.trim(); rec.tecnica = $("#d-tec").value;
+      if (swv && shv) rec.dimensioni = swv + "x" + shv; else delete rec.dimensioni;
       const mo = +$("#d-month").value, dy = mo ? +$("#d-day").value : 0;
       if (mo) rec.month = mo; else delete rec.month;
       if (dy) rec.day = dy; else delete rec.day;

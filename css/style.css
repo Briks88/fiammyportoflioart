@@ -226,3 +226,5 @@ section.block { padding-top: clamp(44px, 7vw, 92px); }
 .brand, .hero h1, .sec-title, .tile .t-name, .work-info h1, .prose h1, .prose h2, .work-nav span, .lb .lb-cap b, .card .meta b, .hero p.tagline { font-weight: 700; letter-spacing: .02em; }
 .hero p.tagline { font-style: normal; }
 .hero h1 { line-height: 1.12; } .work-info h1 { line-height: 1.05; }
+
+.work-size { white-space: nowrap; }
