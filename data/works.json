@@ -158,7 +158,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": false,
+      "featured": true,
       "image": "images/basilisco-mwgx0k6g.jpg",
       "id": "basilisco"
     },
@@ -183,7 +183,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga \"Pokémon\"",
-      "featured": false,
+      "featured": true,
       "image": "images/vaporeon-mwgwxywf.jpg",
       "id": "vaporeon"
     },
