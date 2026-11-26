@@ -1,6 +1,20 @@
 {
   "works": [
     {
+      "title": "Blu",
+      "year": "2022",
+      "tecnica": "acrilico",
+      "temi": [
+        "natura"
+      ],
+      "description": "Acrilico su tela 60x80",
+      "featured": true,
+      "image": "images/blu-mwy2sthh.jpg",
+      "month": 6,
+      "day": 29,
+      "id": "blu"
+    },
+    {
       "title": "Celeste",
       "year": "2019",
       "tecnica": "acrilico",
