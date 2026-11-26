@@ -1,6 +1,23 @@
 {
   "works": [
     {
+      "title": "Aslan",
+      "year": "2016",
+      "tecnica": "olio-su-tela",
+      "temi": [
+        "fantasy",
+        "natura",
+        "animali",
+        "fanart"
+      ],
+      "description": "Ripresa dall'opera \"Aslan from The Chronicles of Narnia\" di E. Felix.\nOlio su tela 40x60",
+      "featured": true,
+      "image": "images/aslan-mwy4dfs0.jpg",
+      "month": 4,
+      "day": 26,
+      "id": "aslan"
+    },
+    {
       "title": "Blu",
       "year": "2022",
       "tecnica": "acrilico",
