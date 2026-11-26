@@ -1,6 +1,22 @@
 {
   "works": [
     {
+      "title": "Smaug",
+      "year": "2016",
+      "tecnica": "olio-su-tela",
+      "temi": [
+        "fantasy",
+        "fanart"
+      ],
+      "description": "Copia dal concept art di Gus Hunter per il film \"Lo Hobbit e la desolazione di Smaug\".",
+      "featured": false,
+      "image": "images/smaug-mwy4mg08.jpg",
+      "dimensioni": "100x70",
+      "month": 11,
+      "day": 29,
+      "id": "smaug"
+    },
+    {
       "title": "Aslan",
       "year": "2016",
       "tecnica": "olio-su-tela",
@@ -10,12 +26,13 @@
         "animali",
         "fanart"
       ],
-      "description": "Ripresa dall'opera \"Aslan from The Chronicles of Narnia\" di E. Felix.\nOlio su tela 40x60",
+      "description": "Ripresa dall'opera \"Aslan from The Chronicles of Narnia\" di E. Felix.",
       "featured": true,
       "image": "images/aslan-mwy4dfs0.jpg",
       "month": 4,
       "day": 26,
-      "id": "aslan"
+      "id": "aslan",
+      "dimensioni": "40x60"
     },
     {
       "title": "Blu",
@@ -24,12 +41,13 @@
       "temi": [
         "natura"
       ],
-      "description": "Acrilico su tela 60x80",
+      "description": "",
       "featured": true,
       "image": "images/blu-mwy2sthh.jpg",
       "month": 6,
       "day": 29,
-      "id": "blu"
+      "id": "blu",
+      "dimensioni": "60x80"
     },
     {
       "title": "Celeste",
@@ -39,10 +57,11 @@
         "natura",
         "animali"
       ],
-      "description": "Ripresa dall'opera \"Great Blue Heron Artwork 0660\" di Linda King.\nUn airone nella sua posa più sinuosa ed elegante, un guardiano dello stagno.\nAcrilico su tela 40x80",
+      "description": "Ripresa dall'opera \"Great Blue Heron Artwork 0660\" di Linda King.\nUn airone nella sua posa più sinuosa ed elegante, un guardiano dello stagno.",
       "featured": false,
       "image": "images/celeste-mwy2en85.jpg",
-      "id": "celeste"
+      "id": "celeste",
+      "dimensioni": "40x80"
     },
     {
       "title": "Barbagianni in volo",
@@ -52,12 +71,13 @@
         "natura",
         "animali"
       ],
-      "description": "Una mia interpretazione pittorica di una fotografia che ritrae un bellissimo Barbagianni in volo.\nAcrilico su tela 50x70",
+      "description": "Una mia interpretazione pittorica di una fotografia che ritrae un bellissimo Barbagianni in volo.",
       "featured": true,
       "image": "images/barbagianni-in-volo-mwy20xwz.jpg",
       "month": 5,
       "day": 30,
-      "id": "barbagianni-in-volo"
+      "id": "barbagianni-in-volo",
+      "dimensioni": "50x70"
     },
     {
       "title": "Estate",
@@ -304,7 +324,7 @@
         "fanart"
       ],
       "description": "Preso ispirazione dai personaggi della saga di \"Harry Potter\" e \"Animali fantastici e dove trovarli\"",
-      "featured": false,
+      "featured": true,
       "image": "images/ungaro-spinato-mwgwdb42.jpg",
       "id": "ungaro-spinato"
     },
@@ -368,7 +388,7 @@
         "fantasy"
       ],
       "description": "",
-      "featured": false,
+      "featured": true,
       "image": "images/fenice-mwgw25bs.jpg",
       "id": "fenice"
     },
